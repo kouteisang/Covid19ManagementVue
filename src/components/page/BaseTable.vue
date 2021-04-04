@@ -192,35 +192,55 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
-
-
-
-
-
+                    let url = 'http://localhost:8181/user/deleteUser'
+                    let params = {
+                      identityId: row.identityId
+                    }
+                    axios.post(url,qs.stringify(params),{headers:{ 'content-type': 'application/x-www-form-urlencoded' }}).then(function (resp){
+                        if(resp.data.data == 200){
+                          window.location.reload()
+                        }
+                    })
                     this.$message.success('删除成功');
-                    this.tableData.splice(index, 1);
+                  //  this.tableData.splice(index, 1);
                 })
                 .catch(() => {});
         },
         // 多选操作
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
+        handleSelectionChange(row) {
+            this.multipleSelection = row;
         },
         delAllSelection() {
             const length = this.multipleSelection.length;
-            let str = '';
-            this.delList = this.delList.concat(this.multipleSelection);
-            for (let i = 0; i < length; i++) {
-                str += this.multipleSelection[i].name + ' ';
-            }
-            this.$message.error(`删除了${str}`);
-            this.multipleSelection = [];
+            const that = this
+            // 二次确认删除
+            this.$confirm('确定要删除吗？', '提示', {
+              type: 'warning'
+            }).then(() => {
+                  let url = 'http://localhost:8181/user/deleteUser'
+                      for(var i = 0; i < length; i ++){
+                  let params = {
+                    identityId: that.multipleSelection[i].identityId
+                  }
+                    axios.post(url, qs.stringify(params), {headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(function (resp) {
+                      if (resp.data.data == 200) {
+                        window.location.reload()
+                      }
+                    })
+                 }
+              that.$message.success(`删除成功`);
+              that.multipleSelection = [];
+                })
+                .catch(() => {});
         },
         // 编辑操作
         handleEdit(index, row) {
-            this.idx = index;
-            this.form = row;
-            this.editVisible = true;
+          this.$router.push({
+            path:'/editCommunityUserInfo',
+            query:{
+              identityId:row.identityId
+            }
+          })
         },
         // 保存编辑
         saveEdit() {

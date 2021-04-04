@@ -30,6 +30,11 @@ export default new Router({
                     meta: { title: '居民信息管理' }
                 },
                 {
+                    path: '/addCommunityUserInfo',
+                    component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/AddCommunityUserInfo.vue'),
+                    meta: { title: '添加居民信息' }
+                },
+                {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }

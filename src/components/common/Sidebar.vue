@@ -66,7 +66,13 @@ export default {
                     index: 'table',
                     title: '居民信息管理'
                 },
-                {
+              {
+                icon: 'el-icon-lx-cascades',
+                index: 'addcommunityuserinfo',
+                title: '添加居民信息'
+              },
+
+              {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',
                     title: 'tab选项卡'
