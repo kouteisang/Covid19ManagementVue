@@ -20,8 +20,24 @@
           <el-form-item label="手机号">
             <el-input v-model="form.phone" placeholder="请输入手机号" style="width:300px"></el-input>
           </el-form-item>
-          <el-form-item label="所属区域选择">
-            <el-cascader :options="cityAllList" v-model="form.options" placeholder="请选择所属区域" @change="handleChange"></el-cascader>
+          <el-form-item label="省份">
+            <el-select v-model="form.provinces.label"  placeholder="请选择省份" @focus="getAllProvince">
+              <el-option v-for="province in form.provinces" :key="province" :value="province" :label="province"/>
+            </el-select>
+         </el-form-item>
+          <el-form-item label="城市">
+            <el-select v-model="form.city" placeholder="请选择城市">
+              <el-option key="bbk" label="步步高" value="bbk"></el-option>
+              <el-option key="xtc" label="小天才" value="xtc"></el-option>
+              <el-option key="imoo" label="imoo" value="imoo"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="市辖区">
+            <el-select v-model="form.district" placeholder="请选择市辖区">
+              <el-option key="bbk" label="步步高" value="bbk"></el-option>
+              <el-option key="xtc" label="小天才" value="xtc"></el-option>
+              <el-option key="imoo" label="imoo" value="imoo"></el-option>
+            </el-select>
           </el-form-item>
           <el-form-item label="详细地址">
             <el-input v-model="form.community" placeholder="请输入详细地址"></el-input>
@@ -42,28 +58,48 @@
 </template>
 
 <script>
+import axios from "axios";
+import qs from "qs";
 export default {
   name: 'addcommunityuserinfo',
   data() {
     return {
-      cityAllList,
+      //provinces: [],
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: true,
-        type: ['步步高'],
-        resource: '小天才',
-        desc: '',
-        options: []
+        realName: '',
+        identityId: '',
+        phone: '',
+        provinces:[],
+        city: [],
+        district: [],
+        emergencyName: '',
+        community: '',
+        emergencyPhone: ''
       }
     };
   },
   methods: {
     onSubmit() {
       this.$message.success('提交成功！');
+    },
+    getAllProvince(){
+      let url = 'http://localhost:8181/common/getAllProvince'
+      const that = this
+      axios.get(url).then(function (resp) {
+        that.form.provinces = []
+        that.form.provinces = resp.data.data.provinces
+        console.log("sad",that.form.provinces)
+      })
     }
+  }
+  ,
+  created() {
+      let url = 'http://localhost:8181/common/getAllProvince'
+      const that = this
+      axios.get(url).then(function (resp) {
+        that.form.provinces = resp.data.data.provinces
+        console.log(resp)
+      })
   }
 };
 </script>
