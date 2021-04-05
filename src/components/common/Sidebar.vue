@@ -77,6 +77,23 @@ export default {
                     index: 'tabs',
                     title: 'tab选项卡'
                 },
+              {
+                icon: 'el-icon-lx-calendar',
+                index: '8',
+                title: '病情人员管理',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'addsickpeople',
+                    title: '添加生病人员'
+                  },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'sickpeoplelist',
+                    title: '生病人员管理'
+                  }
+                ]
+              },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',

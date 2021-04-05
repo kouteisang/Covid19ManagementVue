@@ -15,6 +15,16 @@ export default new Router({
             meta: { title: '自述文件' },
             children: [
                 {
+                    path:'addsickpeople',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/AddSickPeople.vue'),
+                    meta:{title: '添加生病人员'}
+                },
+                {
+                    path:'/editCommunityUserInfo',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/editCommunityUserInfo.vue'),
+                    meta:{title: '修改小区用户信息'}
+                },
+                {
                     path: '/dashboard',
                     component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/Dashboard.vue'),
                     meta: { title: '系统首页' }
@@ -33,6 +43,11 @@ export default new Router({
                     path: '/addCommunityUserInfo',
                     component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/AddCommunityUserInfo.vue'),
                     meta: { title: '添加居民信息' }
+                },
+                {
+                    path:"sickpeopleList",
+                    component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/SickpeopleList.vue'),
+                    meta:{title: '生病人员列表'}
                 },
                 {
                     path: '/tabs',

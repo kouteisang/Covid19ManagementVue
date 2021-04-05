@@ -12,10 +12,10 @@
       <div class="form-box">
         <el-form ref="form" :model="form" :rules="rules"  label-width="125px">
           <el-form-item label="姓名" prop="realName">
-            <el-input v-model="form.realName" placeholder="请输入姓名" style="width:200px"></el-input>
+            <el-input v-model="form.realName" placeholder="请输入姓名" readonly="true" style="width:200px"></el-input>
           </el-form-item>
           <el-form-item label="身份证号" prop="identityId">
-            <el-input v-model="form.identityId" placeholder="请输入身份证号" style="width:300px"></el-input>
+            <el-input v-model="form.identityId" placeholder="请输入身份证号" readonly="true" style="width:300px"></el-input>
           </el-form-item>
           <el-form-item label="手机号" prop="phone">
             <el-input v-model="form.phone" placeholder="请输入手机号" style="width:300px"></el-input>
@@ -24,7 +24,7 @@
             <el-select v-model="form.provinces.label"  placeholder="请选择省份" @focus="getAllProvince">
               <el-option v-for="province in form.provinces" :key="province" :value="province" :label="province"/>
             </el-select>
-         </el-form-item>
+          </el-form-item>
           <el-form-item label="城市" prop="cities">
             <el-select v-model="form.cities.label" placeholder="请选择城市" @focus="getAllCities">
               <el-option v-for="city in form.cities" :key="city" :value="city" :label="city"/>
@@ -45,19 +45,18 @@
             <el-input v-model="form.emergencyPhone" placeholder="请输入紧急联系人电话" style="width:300px"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">添加用户</el-button>
+            <el-button type="primary" @click="onSubmit">修改用户信息</el-button>
           </el-form-item>
         </el-form>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import qs from "qs";
 export default {
-  name: 'addcommunityuserinfo',
+  name: "editCommunityUserInfo",
   data() {
     return {
       form: {
@@ -105,31 +104,45 @@ export default {
         ]
       }
     };
-  },
-  methods: {
+  },created() {
+     const that = this
+     let url = 'http://localhost:8181/user/findUserByIndentityId?identityId='+this.$route.query.identityId
+     axios.get(url).then(function (resp){
+       console.log(resp)
+       that.form.realName = resp.data.data.realName
+       that.form.identityId = resp.data.data.identityId
+       that.form.phone = resp.data.data.phone
+       that.form.provinces.label = resp.data.data.province
+       that.form.cities.label = resp.data.data.city
+       that.form.districts.label = resp.data.data.district
+       that.form.community = resp.data.data.community
+       that.form.emergencyPhone = resp.data.data.emergencyPhone
+       that.form.emergencyName = resp.data.data.emergencyName
+     })
+  },methods: {
     onSubmit() {
-      let addUserUrl = 'http://localhost:8181/user/addUser'
+      let editUserUrl = 'http://localhost:8181/user/editInfoByIdentityId'
       const that = this
       let params = {
-         identityId: this.form.identityId,
-         realName: this.form.realName,
-         phone:this.form.phone,
-         province: this.form.provinces.label,
-         city: this.form.cities.label,
-         district: this.form.districts.label,
-         community: this.form.community,
-         emergencyName: this.form.emergencyName,
-         emergencyPhone: this.form.emergencyPhone
+        identityId: this.form.identityId,
+        realName: this.form.realName,
+        phone:this.form.phone,
+        province: this.form.provinces.label,
+        city: this.form.cities.label,
+        district: this.form.districts.label,
+        community: this.form.community,
+        emergencyName: this.form.emergencyName,
+        emergencyPhone: this.form.emergencyPhone
       }
       let header = { 'content-type': 'application/x-www-form-urlencoded' }
-      axios.post(addUserUrl, qs.stringify(params), {headers: header}).then(function (resp) {
+      axios.post(editUserUrl, qs.stringify(params), {headers: header}).then(function (resp) {
 
-           if(resp.data.code == "200"){
-             that.$message({
-               message: '添加小区用户成功',
-               type: 'success'
-             });
-           }
+        if(resp.data.code == "200"){
+          that.$message({
+            message: '修改小区用户'+that.form.realName+'信息成功',
+            type: 'success'
+          });
+        }
       })
     },
     getAllProvince(){
@@ -166,14 +179,9 @@ export default {
       })
     }
   }
-  ,
-  created() {
-      let url = 'http://localhost:8181/common/getAllProvince'
-      const that = this
-      axios.get(url).then(function (resp) {
-        that.form.provinces = resp.data.data.provinces
-        console.log(resp)
-      })
-  }
-};
+}
 </script>
+
+<style scoped>
+
+</style>
