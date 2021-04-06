@@ -87,7 +87,7 @@
 
 <script>
 import axios from "_axios@0.18.1@axios";
-
+import qs from "qs";
 export default {
   name: "SickpeopleList",
   data() {
@@ -129,6 +129,66 @@ export default {
     }).catch(function (resposne) {
 
     })
+  },
+  methods:{
+    // 删除操作
+    handleDelete(index, row) {
+      // 二次确认删除
+      this.$confirm('确定要删除吗？', '提示', {
+        type: 'warning'
+      })
+          .then(() => {
+            let url = 'http://localhost:8181/manager/sick/deleteSickUserByIdentityId'
+            let params = {
+              identityId: row.identityId
+            }
+            axios.post(url,qs.stringify(params),{headers:{ 'content-type': 'application/x-www-form-urlencoded' }}).then(function (resp){
+              console.log("resp = ", resp)
+              if(resp.data.code == 200){
+                window.location.reload()
+              }
+            })
+            this.$message.success('删除成功');
+            //  this.tableData.splice(index, 1);
+          })
+          .catch(() => {});
+    },
+    // 多选操作
+    handleSelectionChange(row) {
+      this.multipleSelection = row;
+    },
+    delAllSelection() {
+      const length = this.multipleSelection.length;
+      const that = this
+      // 二次确认删除
+      this.$confirm('确定要删除吗？', '提示', {
+        type: 'warning'
+      }).then(() => {
+        let url = 'http://localhost:8181/manager/sick/deleteSickUserByIdentityId'
+        for(var i = 0; i < length; i ++){
+          let params = {
+            identityId: that.multipleSelection[i].identityId
+          }
+          axios.post(url, qs.stringify(params), {headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(function (resp) {
+            if (resp.data.code == 200) {
+              window.location.reload()
+            }
+          })
+        }
+        that.$message.success(`删除成功`);
+        that.multipleSelection = [];
+      })
+          .catch(() => {});
+    },
+    // 编辑操作
+    handleEdit(index, row) {
+      this.$router.push({
+        path:'/editSickUserInfo',
+        query:{
+          identityId:row.identityId
+        }
+      })
+    }
   }
 }
 </script>

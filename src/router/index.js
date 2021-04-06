@@ -45,6 +45,11 @@ export default new Router({
                     meta: { title: '添加居民信息' }
                 },
                 {
+                  path:'/editSickUserInfo',
+                  component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/EditSickUserInfo.vue'),
+                  meta: { title: '更新病人病况' }
+                },
+                {
                     path:"sickpeopleList",
                     component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/SickpeopleList.vue'),
                     meta:{title: '生病人员列表'}
