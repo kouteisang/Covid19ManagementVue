@@ -27,6 +27,8 @@
             <el-date-picker
                 v-model="form.whenSick"
                 type="date"
+                :editable = "false"
+                readonly = "true"
                 placeholder="请选择生病选择日期"
                 value-format="yyyy-MM-dd">
             </el-date-picker>
@@ -45,7 +47,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="详细地址" prop="community">
-            <el-input v-model="form.community" placeholder="请输入详细地址"></el-input>
+            <el-input v-model="form.community" placeholder="请输入详细地址" readonly="true"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">修改居民病情信息</el-button>
@@ -58,11 +60,13 @@
 
 <script>
 import axios from "_axios@0.18.1@axios";
-
+import qs from "qs";
 export default {
   name: "EditSickUserInfo",
   data(){
     return{
+      if_favour: '',
+      if_covidTest: '',
       options:[
         {
           value:"是",
@@ -97,6 +101,35 @@ export default {
         ifFavour: '',
         covidTest: '',
         community: ''
+      },
+      rules:{
+        identityId: [
+          { required: true, message: '请输入身份证号', trigger: 'blur' }
+        ],
+        realName: [
+          { required: true, message: '请输入真实姓名', trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, message: '请输入联系方式', trigger: 'blur' }
+        ],
+        sickReason: [
+          { required: true, message: '请输入病症', trigger: 'blur' }
+        ],
+        bodyTemperature:[
+          { required: true, message: '请输入体温', trigger: 'blur' }
+        ],
+        whenSick:[
+          { required: true, message: '请选择生病日期', trigger: 'blur' }
+        ],
+        ifFavour:[
+          { required: true, message: '请选择是否发烧', trigger: 'blur' }
+        ],
+        covidTest:[
+          { required: true, message: '请选择核酸检测结果', trigger: 'blur' }
+        ],
+        community:[
+          { required: true, message: '请输入详细地址', trigger: 'blur' }
+        ]
       }
     }
   },created() {
@@ -115,6 +148,35 @@ export default {
       that.form.covidTest = resp.data.data.covidTest
       that.form.whenSick = resp.data.data.whenSick
     })
+  },methods:{
+    onSubmit(){
+      const that = this
+      let url = 'http://localhost:8181/manager/sick/editSickUserInfoByidentityId'
+      let params = {
+        identityId: this.form.identityId,
+        sickReason: this.form.sickReason,
+        ifFavour: this.if_favour,
+        covidTest: this.if_covidTest,
+        bodyTemperature: this.form.bodyTemperature
+      }
+      let header = { 'content-type': 'application/x-www-form-urlencoded' }
+      axios.post(url, qs.stringify(params),{headers:header}).then(function (resp) {
+        if(resp.data.code == "200"){
+          that.$message({
+            message: '修改病情信息成功',
+            type: 'success'
+          });
+        }else if(resp.data.code != "200"){
+          that.$message.error('修改病情信息失败');
+        }
+      })
+    },
+    getIfFavour(val){
+      this.if_favour = val
+    },
+    getCovidTest(val){
+      this.if_covidTest = val
+    }
   }
 }
 </script>

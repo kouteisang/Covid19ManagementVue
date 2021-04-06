@@ -108,7 +108,6 @@ export default {
           covidTest:[
             { required: true, message: '请选择核酸检测结果', trigger: 'blur' }
           ]
-
       }
     }
   },
@@ -127,7 +126,6 @@ export default {
       }
       let header = { 'content-type': 'application/x-www-form-urlencoded' }
       axios.post(addSickUserUrl, qs.stringify(params), {headers: header}).then(function (resp) {
-
         if(resp.data.code == "200"){
           that.$message({
             message: '添加生病人员成功',
