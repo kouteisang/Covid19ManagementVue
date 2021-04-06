@@ -35,6 +35,16 @@ export default new Router({
                     meta: { title: '自定义图标' }
                 },
                 {
+                    path:'/addNews',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/AddNews.vue'),
+                    meta: { title: '添加公告' }
+                },
+                {
+                    path:'/newsList',
+                    component: () => import(/* webpackChunkName: "table" */ '../components/page/NewsList.vue'),
+                    meta: { title: '公告列表' }
+                },
+                {
                     path: '/table',
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
                     meta: { title: '居民信息管理' }
@@ -53,6 +63,11 @@ export default new Router({
                     path:"sickpeopleList",
                     component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/SickpeopleList.vue'),
                     meta:{title: '生病人员列表'}
+                },
+                {
+                    path:"/editNewsInfo",
+                    component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/EditNewsInfo.vue'),
+                    meta:{title: '公告信息详情'}
                 },
                 {
                     path: '/tabs',

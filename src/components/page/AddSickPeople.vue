@@ -132,7 +132,10 @@ export default {
             type: 'success'
           });
         }else if(resp.data.code == "404"){
-            that.$message.error('小区内无此住户，请先添加此用户！');
+          that.$message({
+            message: '小区内无此住户，请先添加此用户！',
+            type: 'error'
+          });
         }
       })
     },

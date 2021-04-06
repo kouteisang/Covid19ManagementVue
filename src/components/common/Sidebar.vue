@@ -78,7 +78,7 @@ export default {
                     title: 'tab选项卡'
                 },
               {
-                icon: 'el-icon-lx-calendar',
+                icon: 'el-icon-lx-cascades',
                 index: '8',
                 title: '病情人员管理',
                 subs: [
@@ -91,6 +91,23 @@ export default {
                     icon: 'el-icon-lx-attention',
                     index: 'sickpeoplelist',
                     title: '生病人员管理'
+                  }
+                ]
+              },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: '9',
+                title: '公告管理',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'addNews',
+                    title: '发布公告'
+                  },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'newsList',
+                    title: '公告列表'
                   }
                 ]
               },
