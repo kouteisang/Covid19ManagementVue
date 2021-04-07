@@ -70,6 +70,11 @@ export default new Router({
                     meta:{title: '公告信息详情'}
                 },
                 {
+                    path:"/allCountryCovidData",
+                    component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/AllCountryCovidData.vue'),
+                    meta:{title: '全球疫情数据'}
+                },
+                {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }

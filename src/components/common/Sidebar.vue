@@ -111,6 +111,18 @@ export default {
                   }
                 ]
               },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: '10',
+                title: '疫情数据分析',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'allCountryCovidData',
+                    title: '全球疫情数据'
+                  },
+                ]
+              },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
