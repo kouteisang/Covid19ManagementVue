@@ -123,6 +123,18 @@ export default {
                   },
                 ]
               },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: '11',
+                title: '物资管理',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'AskForSupply',
+                    title: '物资缺失报备'
+                  },
+                ]
+              },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',

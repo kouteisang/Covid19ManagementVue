@@ -78,6 +78,8 @@ export default {
         let curedCount = parseInt(resp.data.data.curedCount)
         let deadCount = parseInt(resp.data.data.deadCount)
         that.options.datasets[0].data = [currentConfirmedCount,confirmedCount,suspectedCount,curedCount,deadCount]
+
+
       })
     }
   }

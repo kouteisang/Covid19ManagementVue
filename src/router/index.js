@@ -85,6 +85,11 @@ export default new Router({
                     meta: { title: '基本表单' }
                 },
                 {
+                    path:'/askForSupply',
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/AskForSupply.vue'),
+                    meta: { title: '物资缺失报备' }
+                },
+                {
                     // 富文本编辑器组件
                     path: '/editor',
                     component: () => import(/* webpackChunkName: "editor" */ '../components/page/VueEditor.vue'),
