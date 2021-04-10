@@ -30,6 +30,11 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
+                    path:'/applyForSupplyList',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/ApplyForSupplyList.vue'),
+                    meta:{title: '物资缺失列表'}
+                },
+                {
                     path: '/icon',
                     component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
                     meta: { title: '自定义图标' }

@@ -133,6 +133,11 @@ export default {
                     index: 'AskForSupply',
                     title: '物资缺失报备'
                   },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'ApplyForSupplyList',
+                    title: '物资缺失列表'
+                  },
                 ]
               },
                 {
