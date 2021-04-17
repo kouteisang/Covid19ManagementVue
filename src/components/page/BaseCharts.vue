@@ -39,7 +39,7 @@
 <script>
 import Schart from 'vue-schart';
 export default {
-    name: 'basecharts',
+    name: 'AllCountryCovidData',
     components: {
         Schart
     },

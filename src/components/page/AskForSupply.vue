@@ -9,7 +9,9 @@
       </el-breadcrumb>
     </div>
     <div class="container">
-      <span style="color:#606266;line-height: 50px">工作人员会根据物资数据统计情况为大家分配物资，不可能面面俱到，请大家谅解！</span>
+      <div class="plugins-tips" style="color:#606266">
+        工作人员会根据物资数据统计情况为大家分配物资，不可能面面俱到，请大家谅解！
+      </div>
       <div class="form-box" >
         <el-form ref="form" :model="form" :rules="rules" label-width="80px">
           <el-form-item label="身份证号" prop="identityId">
@@ -131,7 +133,6 @@ export default {
       let url = 'http://localhost:8181/common/getAllSupplyKind'
       const that = this
       axios.get(url).then(function (resp){
-        console.log(resp)
         that.form.supplyTypes = resp.data.data
       })
     },
@@ -143,7 +144,6 @@ export default {
       }
       axios.get(url, {params:params}).then(function (resp) {
         that.form.supplyContents = resp.data.data
-        console.log("cities",that.form.cities)
       })
     }
   }

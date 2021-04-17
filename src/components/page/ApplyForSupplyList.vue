@@ -89,8 +89,8 @@ export default {
   data() {
     return {
       query: {
-        supplyTypes:'',
-        supplyContents:'',
+        supplyTypes:[],
+        supplyContents:[],
         emergencies:[{
           value:0,
           label:"否"
@@ -142,28 +142,25 @@ export default {
       });
     },
     clearInfo(){
-      this.query.identityId = ""
-      this.query.realName = ""
-      this.query.phone = ""
+      this.query.supplyTypes = ""
+      this.query.supplyContents = ""
+      this.query.emergencies = ""
       const that = this;
-      let url = 'http://localhost:8181/user/findUser'
+      let url = 'http://localhost:8181/user/supply/getAskForSupplyList'
       let params = {
         page: 1,
         size: 10,
-        name: this.query.identityId,
-        phone: this.query.realName,
-        identityId: this.query.realName
       }
       axios.get(url,{
         params:params
       }).then(function (response) {
-        console.log(response)
         that.tableData = response.data.data.list;
         that.pageTotal = response.data.data.total;
         that.size = response.data.data.size;
       }).catch(function (resposne) {
 
       })
+      this.query.emergencies = [{value:0, label:"否"},{value: 1, label: "是"}]
     }
     ,
     handleEdit(index, row){
@@ -172,7 +169,26 @@ export default {
     ,
     // 触发搜索按钮
     handleSearch() {
+      this.$set(this.query, 'pageIndex', 1);
+      const that = this;
+      let url = 'http://localhost:8181/user/supply/getAskForSupplyList'
 
+      let params = {
+        page: 1,
+        size: 10,
+        supplyType: this.query.supplyTypes.label,
+        supplyContent: this.query.supplyContents.label,
+        isEmergency: this.query.emergencies.label
+      }
+      axios.get(url,{
+        params:params
+      }).then(function (response) {
+        that.tableData = response.data.data.list;
+        that.pageTotal = response.data.data.total;
+        that.size = response.data.data.size;
+      }).catch(function (resposne) {
+
+      })
     },
     getAllSupply(){
       let url = 'http://localhost:8181/common/getAllSupplyKind'
@@ -193,19 +209,16 @@ export default {
       })
     },
     page(currentPage){
-      alert("??/")
       this.$set(this.query, 'pageIndex', 1);
       const that = this;
       let url = 'http://localhost:8181/user/supply/getAskForSupplyList'
-      alert(this.query.supplyTypes.label)
-      alert(this.query.supplyContents.label)
-
 
       let params = {
         page: currentPage,
         size: 10,
-        supplyType: this.query.supplyContent.label,
-        supplyContent: this.query.supplyContent.label,
+        supplyType: this.query.supplyTypes.label,
+        supplyContent: this.query.supplyContents.label,
+        isEmergency: this.query.emergencies.label
       }
       axios.get(url,{
         params:params

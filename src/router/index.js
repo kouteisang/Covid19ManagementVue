@@ -35,6 +35,21 @@ export default new Router({
                     meta:{title: '物资缺失列表'}
                 },
                 {
+                    path:'/getCovidNewsInfo',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/GetCovidNewsInfo.vue'),
+                    meta:{title: '新闻详情'}
+                },
+                {
+                    path:'/covidNewsList',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/CovidNewsList.vue'),
+                    meta:{title: '疫情新闻'}
+                },
+                {
+                    path:'/supplyStatics',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/SupplyStatics.vue'),
+                    meta:{title: '物资缺失统计'}
+                },
+                {
                     path: '/icon',
                     component: () => import(/* webpackChunkName: "icon" */ '../components/page/Icon.vue'),
                     meta: { title: '自定义图标' }

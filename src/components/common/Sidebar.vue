@@ -138,6 +138,22 @@ export default {
                     index: 'ApplyForSupplyList',
                     title: '物资缺失列表'
                   },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'SupplyStatics',
+                    title: '物资缺失统计'
+                  },
+                ]
+              },{
+                icon: 'el-icon-lx-cascades',
+                index: '12',
+                title: '疫情新闻管理',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'CovidNewsList',
+                    title: '疫情新闻'
+                  }
                 ]
               },
                 {
