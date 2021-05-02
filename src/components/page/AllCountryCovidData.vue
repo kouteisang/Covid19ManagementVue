@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import Schart from "_vue-schart@2.0.0@vue-schart";
+import Schart from 'vue-schart';
 import axios from "axios";
 export default {
   name: "AllCountryCovidData",

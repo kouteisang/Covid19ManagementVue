@@ -121,6 +121,11 @@ export default {
                     index: 'allCountryCovidData',
                     title: '全球疫情数据'
                   },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'chinaCovidData',
+                    title: '中国疫情数据'
+                  }
                 ]
               },
               {

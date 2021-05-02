@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import axios from "_axios@0.18.1@axios";
+//import axios from "_axios@0.18.1@axios";
 import qs from "qs";
 let header = { 'content-type': 'application/x-www-form-urlencoded' }
 export default {

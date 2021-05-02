@@ -86,7 +86,8 @@
 </template>
 
 <script>
-import axios from "_axios@0.18.1@axios";
+//mport axios from "_axios@0.18.1@axios";
+import axios from "axios";
 import qs from "qs";
 export default {
   name: "SickpeopleList",

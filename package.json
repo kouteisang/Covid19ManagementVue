@@ -8,9 +8,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
+    "echarts": "^4.9.0",
     "element-ui": "^2.11.0",
+    "map": "^1.0.1",
     "mavon-editor": "^2.6.17",
     "vue": "^2.6.10",
     "vue-cropperjs": "^3.0.0",
@@ -23,6 +25,20 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.6.10"
-  }
+  },
+  "description": "",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouteisang/Covid19ManagementVue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kouteisang/Covid19ManagementVue/issues"
+  },
+  "homepage": "https://github.com/kouteisang/Covid19ManagementVue#readme"
 }

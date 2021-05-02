@@ -112,6 +112,7 @@
 <script>
 import Schart from 'vue-schart';
 import bus from '../common/bus';
+import Maps from 'map'
 export default {
     name: 'dashboard',
     data() {
@@ -219,7 +220,8 @@ export default {
         };
     },
     components: {
-        Schart
+        Schart,
+        Maps
     },
     computed: {
         role() {

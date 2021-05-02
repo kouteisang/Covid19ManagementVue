@@ -95,6 +95,11 @@ export default new Router({
                     meta:{title: '全球疫情数据'}
                 },
                 {
+                    path:"/chinaCovidData",
+                    component: () => import(/* webpackChunkName: "addCommunityUserInfo" */ '../components/page/ChinaCovidData.vue'),
+                    meta:{title: '中国疫情数据'}
+                },
+                {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }
