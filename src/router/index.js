@@ -176,6 +176,16 @@ export default new Router({
                     path: '/donate',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
                     meta: { title: '支持作者' }
+                },
+                {
+                    path: '/provinceCovidData',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/ProvinceCovidData.vue'),
+                    meta: { title: '各省份疫情' }
+                },
+                {
+                    path: '/cityCovidData',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/CityCovidData.vue'),
+                    meta: { title: '各城市疫情' }
                 }
             ]
         },

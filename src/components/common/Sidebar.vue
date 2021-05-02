@@ -125,6 +125,11 @@ export default {
                     icon: 'el-icon-lx-attention',
                     index: 'chinaCovidData',
                     title: '中国疫情数据'
+                  },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'provinceCovidData',
+                    title: '各地区疫情数据'
                   }
                 ]
               },
