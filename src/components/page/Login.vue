@@ -42,20 +42,29 @@ export default {
         };
     },
     methods: {
-        submitForm() {
-            this.$refs.login.validate(valid => {
-                if (valid) {
-                    this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
-                } else {
-                    this.$message.error('请输入账号和密码');
-                    console.log('error submit!!');
-                    return false;
-                }
-            });
-        },
-    },
+      submitForm() {
+        let url = "http://localhost:8181/manager/login"
+        let params = {
+          username:this.param.username,
+          password:this.param.password
+        }
+        const that = this
+        this.$refs.login.validate(valid => {
+          that.axios.get(url, {params:params}).then(function (resp) {
+            if(resp.data.data.status === 200){
+              that.$message.success('登录成功');
+              localStorage.setItem('ms_username', that.param.username);
+              that.$router.push('/dashboard');
+            }else {
+              that.$message.error('帐号或密码有误');
+              console.log('error submit!!');
+              return false;
+            }
+          })
+        });
+      },
+    }
+  ,
 };
 </script>
 

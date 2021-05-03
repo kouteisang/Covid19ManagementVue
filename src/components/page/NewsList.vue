@@ -39,6 +39,8 @@
 
 <script>
 import axios from "axios";
+axios.withCredentials = true
+axios.defaults.withCredentials=true
 let url = 'http://localhost:8181/manager/news/getNewsList'
 export default {
   name: 'NewsList',
@@ -108,7 +110,7 @@ export default {
       page:1,
       size:10
     }
-    axios.get(url,{params:params}).then(function (resp) {
+    this.axios.get(url,{params:params}).then(function (resp) {
       that.unread = resp.data.data.list;
       that.pageTotal = resp.data.data.total;
       that.size = resp.data.data.size;
