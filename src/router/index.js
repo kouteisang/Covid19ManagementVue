@@ -186,6 +186,11 @@ export default new Router({
                     path: '/cityCovidData',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/CityCovidData.vue'),
                     meta: { title: '各城市疫情' }
+                },
+                {
+                    path: '/rumorList',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/RumorList.vue'),
+                    meta: { title: '各城市疫情' }
                 }
             ]
         },

@@ -3,11 +3,14 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-cascades"></i>各城市疫情数据表
+          <i class="el-icon-lx-cascades"></i>各城市/区疫情数据表
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
+      <div class="schart-box">
+        <schart class="schartCity" canvasId="bar" :options="options1"></schart>
+      </div>
 <!--      <div class="handle-box">-->
 <!--        <el-button-->
 <!--            type="primary"-->
@@ -97,6 +100,7 @@
 <!--            @current-change="handlePageChange"-->
 <!--        ></el-pagination>-->
 <!--      </div>-->
+
     </div>
 
     <!-- 编辑弹出框 -->
@@ -120,10 +124,38 @@
 <script>
 import { fetchData } from '../../api/index';
 import axios from "axios";
+import Schart from 'vue-schart';
+
 export default {
   name: 'CityCovidData',
+  components:{
+    Schart
+  },
   data() {
     return {
+      options1: {
+        type: 'bar',
+        title: {
+          text: '疫情数据分析图'
+        },
+        bgColor: '#fbfbfb',
+        labels: [],
+        datasets: [
+          {
+            label: '',
+            fillColor: 'rgba(241, 49, 74, 0.5)',
+            data: []
+          },
+          {
+            label: '',
+            data: []
+          },
+          {
+            label: '',
+            data: []
+          },
+        ]
+      },
       query: {
         address: '',
         name: '',
@@ -145,6 +177,18 @@ export default {
     let url = 'http://localhost:8181/covidApi/getCovidDataByProvince?province='+this.$route.query.province
     axios.get(url).then(function (resp) {
       that.tableData = resp.data.data.list;
+      if(resp.data.data.provinceName != "北京市" && resp.data.data.provinceName != "天津市" && resp.data.data.provinceName != "上海市" && resp.data.data.provinceName != "重庆市")
+        that.options1.title.text = resp.data.data.provinceName+"各城市疫情数据分析图"
+      else
+        that.options1.title.text = resp.data.data.provinceName+"各区疫情数据分析图"
+      that.options1.labels = resp.data.data.cityNames
+      that.options1.datasets[0].label = "累计确诊人数"
+      that.options1.datasets[0].data = resp.data.data.confirmedCountList
+      that.options1.datasets[1].label = "累计治愈人数"
+      that.options1.datasets[1].data = resp.data.data.curedCountList
+      that.options1.datasets[2].label = "累计死亡人数"
+      that.options1.datasets[2].data = resp.data.data.deadCountList
+
     });
   },
   methods: {
@@ -236,5 +280,21 @@ export default {
   margin: auto;
   width: 40px;
   height: 40px;
+}
+.schart-box {
+  display: inline-block;
+  margin: 20px;
+}
+.schartCity {
+  width: 1250px;
+  height: 400px;
+}
+.content-title {
+  clear: both;
+  font-weight: 400;
+  line-height: 50px;
+  margin: 10px 0;
+  font-size: 22px;
+  color: #1f2f3d;
 }
 </style>

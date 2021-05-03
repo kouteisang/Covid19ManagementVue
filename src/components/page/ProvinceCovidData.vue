@@ -50,11 +50,18 @@
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
+                            v-if="scope.row.province!='台湾' && scope.row.province!='香港' && scope.row.province!='澳门' "
                             type="text"
                             icon="el-icon-lx-forward"
                             @click="handleEdit(scope.$index, scope.row)"
                         >查看详情</el-button>
-<!--                        <el-button-->
+                      <el-button
+                          v-else
+                          type="text"
+                          icon="el-icon-lx-roundclose"
+                      >暂不支持</el-button>
+
+                      <!--                        <el-button-->
 <!--                            type="text"-->
 <!--                            icon="el-icon-delete"-->
 <!--                            class="red"-->

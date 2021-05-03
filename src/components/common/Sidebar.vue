@@ -71,7 +71,6 @@ export default {
                 index: 'addcommunityuserinfo',
                 title: '添加居民信息'
               },
-
               {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',
@@ -166,6 +165,11 @@ export default {
                   }
                 ]
               },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: 'rumorList',
+                title: '疫情谣言专区'
+              },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
@@ -205,26 +209,26 @@ export default {
                     index: 'charts',
                     title: 'schart图表'
                 },
-                {
-                    icon: 'el-icon-rank',
-                    index: '6',
-                    title: '拖拽组件',
-                    subs: [
-                        {
-                            index: 'drag',
-                            title: '拖拽列表'
-                        },
-                        {
-                            index: 'dialog',
-                            title: '拖拽弹框'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-global',
-                    index: 'i18n',
-                    title: '国际化功能'
-                },
+                // {
+                //     icon: 'el-icon-rank',
+                //     index: '6',
+                //     title: '拖拽组件',
+                //     subs: [
+                //         {
+                //             index: 'drag',
+                //             title: '拖拽列表'
+                //         },
+                //         {
+                //             index: 'dialog',
+                //             title: '拖拽弹框'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-global',
+                //     index: 'i18n',
+                //     title: '国际化功能'
+                // },
                 {
                     icon: 'el-icon-lx-warn',
                     index: '7',
@@ -240,11 +244,11 @@ export default {
                         }
                     ]
                 },
-                {
-                    icon: 'el-icon-lx-redpacket_fill',
-                    index: '/donate',
-                    title: '支持作者'
-                }
+                // {
+                //     icon: 'el-icon-lx-redpacket_fill',
+                //     index: '/donate',
+                //     title: '支持作者'
+                // }
             ]
         };
     },
