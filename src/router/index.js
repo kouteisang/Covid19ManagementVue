@@ -39,11 +39,7 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/GetCovidNewsInfo.vue'),
                     meta:{title: '新闻详情'}
                 },
-                {
-                    path:'/covidNewsList',
-                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/CovidNewsList.vue'),
-                    meta:{title: '疫情新闻'}
-                },
+
                 {
                     path:'/supplyStatics',
                     component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/SupplyStatics.vue'),
@@ -190,7 +186,19 @@ export default new Router({
                 {
                     path: '/rumorList',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/RumorList.vue'),
-                    meta: { title: '各城市疫情' }
+                    meta: { title: '谣言信息' }
+                },
+                        {
+                            path: '/covidNewsList',
+                            component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/CovidNewsList.vue'),
+                            meta: {title: '疫情新闻'},
+                            roles: ["manager"]
+                        },
+
+                {
+                    path: '/vacinneData',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/VacinneData.vue'),
+                    meta: { title: '接种疫苗信息' }
                 }
             ]
         },

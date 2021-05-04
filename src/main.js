@@ -12,6 +12,9 @@ import 'babel-polyfill';
 import echarts from 'echarts'
 import axios from "axios";
 import VueAxios from 'vue-axios'
+import store from "./role";
+import _glob from './role/user.js'
+Vue.prototype.GLOBAL = _glob
 axios.withCredentials = true;
 axios.defaults.withCredentials=true
 Vue.use(VueAxios, axios)
@@ -51,6 +54,7 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
+    store,
     i18n,
     render: h => h(App)
 }).$mount('#app');

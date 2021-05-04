@@ -1,6 +1,7 @@
 <template>
     <div class="sidebar">
         <el-menu
+            :style="{display:visible}"
             class="sidebar-el-menu"
             :default-active="onRoutes"
             :collapse="collapse"
@@ -10,7 +11,9 @@
             unique-opened
             router
         >
-            <template v-for="item in items">
+            <template
+
+                v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
                         <template slot="title">
@@ -46,6 +49,55 @@
                 </template>
             </template>
         </el-menu>
+        <el-menu
+          :style="{display:visible2}"
+          class="sidebar-el-menu"
+          :default-active="onRoutes"
+          :collapse="collapse"
+          background-color="#324157"
+          text-color="#bfcbd9"
+          active-text-color="#20a0ff"
+          unique-opened
+          router
+      >
+        <template
+
+            v-for="item in items2">
+          <template v-if="item.subs">
+            <el-submenu :index="item.index" :key="item.index">
+              <template slot="title">
+                <i :class="item.icon"></i>
+                <span slot="title">{{ item.title }}</span>
+              </template>
+              <template v-for="subItem in item.subs">
+                <el-submenu
+                    v-if="subItem.subs"
+                    :index="subItem.index"
+                    :key="subItem.index"
+                >
+                  <template slot="title">{{ subItem.title }}</template>
+                  <el-menu-item
+                      v-for="(threeItem,i) in subItem.subs"
+                      :key="i"
+                      :index="threeItem.index"
+                  >{{ threeItem.title }}</el-menu-item>
+                </el-submenu>
+                <el-menu-item
+                    v-else
+                    :index="subItem.index"
+                    :key="subItem.index"
+                >{{ subItem.title }}</el-menu-item>
+              </template>
+            </el-submenu>
+          </template>
+          <template v-else>
+            <el-menu-item :index="item.index" :key="item.index">
+              <i :class="item.icon"></i>
+              <span slot="title">{{ item.title }}</span>
+            </el-menu-item>
+          </template>
+        </template>
+      </el-menu>
     </div>
 </template>
 
@@ -55,6 +107,9 @@ export default {
     data() {
         return {
             collapse: false,
+          role:0,
+          visible:'',
+          visible2:'none',
             items: [
                 {
                     icon: 'el-icon-lx-home',
@@ -170,6 +225,11 @@ export default {
                 index: 'rumorList',
                 title: '疫情谣言专区'
               },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: 'worldMap',
+                title: '全球疫情接种信息'
+              },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
@@ -249,7 +309,30 @@ export default {
                 //     index: '/donate',
                 //     title: '支持作者'
                 // }
-            ]
+            ],
+          items2: [
+            {
+              icon: 'el-icon-lx-home',
+              index: 'dashboard',
+              title: '系统首页'
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: 'table',
+              title: '居民信息管理'
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: 'addcommunityuserinfo',
+              title: '添加居民信息'
+            },
+            {
+              icon: 'el-icon-lx-copy',
+              index: 'tabs',
+              title: 'tab选项卡'
+            }
+
+          ]
         };
     },
     computed: {
@@ -258,12 +341,30 @@ export default {
         }
     },
     created() {
+      // 0表示用户
+      // 1表示管理员
+      let role = localStorage.getItem("nowRole");
+      if(role === "0") {
+        this.visible = 'none';
+        this.visible2='';
+      }
         // 通过 Event Bus 进行组件间通信，来折叠侧边栏
         bus.$on('collapse', msg => {
             this.collapse = msg;
             bus.$emit('collapse-content', msg);
         });
+    },
+  mounted() {
+    //在页面加载时读取sessionStorage里的状态信息
+    if (sessionStorage.getItem("userMsg")) {
+      this.role=sessionStorage.getItem("userMsg");
     }
+    if(this.GLOBAL.state.nowrole!=-1) this.role=this.GLOBAL.state.nowrole;
+    //在页面刷新时将vuex里的信息保存到sessionStorage里
+    window.addEventListener("beforeunload", () => {
+      sessionStorage.setItem("userMsg", this.role);
+    })
+  }
 };
 </script>
 

@@ -13,6 +13,7 @@
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.9.0",
     "element-ui": "^2.11.0",
+    "js-cookie": "^2.2.1",
     "map": "^1.0.1",
     "mavon-editor": "^2.6.17",
     "vue": "^2.6.10",
@@ -22,11 +23,14 @@
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.3",
     "vue-schart": "^2.0.0",
-    "vuedraggable": "^2.17.0"
+    "vuedraggable": "^2.17.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^11.0.1",
     "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.6.10"
   },

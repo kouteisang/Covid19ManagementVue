@@ -54,7 +54,23 @@ export default {
             if(resp.data.data.status === 200){
               that.$message.success('登录成功');
               localStorage.setItem('ms_username', that.param.username);
-              that.$router.push('/dashboard');
+              if(resp.data.data.role === "user")
+                  localStorage.setItem('nowRole', "0")
+              else localStorage.setItem("nowRole", "1")
+
+              that.$store
+                  .dispatch('user/login',{role: resp.data.data.role,
+                  h:'1'})
+                  .then(()=>{
+                    that.$router.push('/dashboard');
+                  })
+                  .catch(err=>{
+
+                  })
+
+
+
+
             }else {
               that.$message.error('帐号或密码有误');
               console.log('error submit!!');

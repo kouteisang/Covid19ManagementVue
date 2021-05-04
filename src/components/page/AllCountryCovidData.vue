@@ -45,9 +45,12 @@
           <div class="schart-box">
             <schart class="schart" canvasId="pie" :options="options"></schart>
           </div>
-      <div class="schart-box">
-        <schart class="schart" canvasId="bar" :options="options1"></schart>
-      </div>
+          <div class="schart-box">
+            <schart class="schart" canvasId="bar" :options="options1"></schart>
+          </div>
+<!--          <div class="schart-box">-->
+<!--            <schart class="schartVaccine" canvasId="line" :options="options2"></schart>-->
+<!--          </div>-->
       </div>
     </div>
 </template>
@@ -112,7 +115,29 @@ export default {
             data: [164, 178, 190, 135, 160]
           }
         ]
-      }
+      },
+      options2: {
+        type: 'line',
+        title: {
+          text: '最近几个月各品类销售趋势图'
+        },
+        bgColor: '#fbfbfb',
+        labels: ['6月', '7月', '8月', '9月', '10月'],
+        datasets: [
+          {
+            label: '家电',
+            data: [234, 278, 270, 190, 230]
+          },
+          {
+            label: '百货',
+            data: [164, 178, 150, 135, 160]
+          },
+          {
+            label: '食品',
+            data: [114, 138, 200, 235, 190]
+          }
+        ]
+      },
     }
   },
   created() {
@@ -192,5 +217,9 @@ export default {
 }
 .mr10 {
   margin-right: 20px;
+}
+.schartVaccine{
+  width: 1250px;
+  height: 400px;
 }
 </style>
