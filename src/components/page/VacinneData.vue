@@ -3,14 +3,20 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-cascades"></i>各城市/区疫情数据表
+          <i class="el-icon-lx-cascades"></i>各国疫苗接种情况
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">
-      <div class="schart-box">
+      <div class="schart-box-vaccine">
         <schart class="schartVacinne" canvasId="line" :options="options2"></schart>
       </div>
+    </div>
+<!--    <div class="container">-->
+<!--      <div class="schart-box">-->
+<!--        <schart class="schartVacinne" canvasId="line" :options="options3"></schart>-->
+<!--      </div>-->
+<!--    </div>-->
       <!--      <div class="handle-box">-->
       <!--        <el-button-->
       <!--            type="primary"-->
@@ -25,23 +31,22 @@
       <!--        <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>-->
       <!--        <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>-->
       <!--      </div>-->
+    <div class="container">
       <el-table
           :data="tableData"
           border
           class="table"
           ref="multipleTable"
           header-cell-class-name="table-header"
+          :default-sort = "{prop: 'totalVaccinations', order: 'descending', prop:'totalVaccinationsPerHundred', order:'descending'}"
           @selection-change="handleSelectionChange"
       >
         <!--        <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>-->
-        <el-table-column prop="cityName" label="城市名"></el-table-column>
-        <el-table-column prop="currentConfirmedCount" label="当前确诊人数"></el-table-column>
-        <el-table-column prop="confirmedCount" label="累计确诊人数"></el-table-column>
-        <el-table-column prop="suspectedCount" label="疑似病例"></el-table-column>
-        <el-table-column prop="curedCount" label="治愈人数"></el-table-column>
-        <el-table-column prop="deadCount" label="死亡人数"></el-table-column>
-        <el-table-column prop="highDangerCount" label="重症患者人数"></el-table-column>
-        <el-table-column prop="midDangerCount" label="中轻度患者人数"></el-table-column>
+        <el-table-column prop="country" label="国家"></el-table-column>
+        <el-table-column prop="date" label="日期"></el-table-column>
+        <el-table-column prop="vaccinations" label="疫苗型号"></el-table-column>
+        <el-table-column prop="totalVaccinations" label="总接种数量" sortable></el-table-column>
+        <el-table-column prop="totalVaccinationsPerHundred" label="每100人接种数量" sortable></el-table-column>
 
         <!--        <el-table-column label="账户余额">-->
         <!--          <template slot-scope="scope">￥{{scope.row.money}}</template>-->
@@ -56,22 +61,22 @@
         <!--          </template>-->
         <!--        </el-table-column>-->
         <!--        <el-table-column prop="address" label="地址"></el-table-column>-->
-        <el-table-column label="状态" align="center">
-          <template slot-scope="scope">
-            <el-tag
-                v-if="parseInt(scope.row.confirmedCount)>=100 && scope.row.cityName != '境外输入'"
-                :type="'danger'"
-            >曾发生严重疫情</el-tag>
-            <el-tag
-                v-else-if="scope.row.cityName == '境外输入'"
-                :type="'danger'"
-            >境外输入</el-tag>
-            <el-tag
-                v-else
-                :type="'success'"
-            >未发生严重疫情</el-tag>
-          </template>
-        </el-table-column>
+<!--        <el-table-column label="状态" align="center">-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-tag-->
+<!--                v-if="parseInt(scope.row.confirmedCount)>=100 && scope.row.cityName != '境外输入'"-->
+<!--                :type="'danger'"-->
+<!--            >曾发生严重疫情</el-tag>-->
+<!--            <el-tag-->
+<!--                v-else-if="scope.row.cityName == '境外输入'"-->
+<!--                :type="'danger'"-->
+<!--            >境外输入</el-tag>-->
+<!--            <el-tag-->
+<!--                v-else-->
+<!--                :type="'success'"-->
+<!--            >未发生严重疫情</el-tag>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
 
         <!--        <el-table-column prop="date" label="注册时间"></el-table-column>-->
         <!--        <el-table-column label="操作" width="180" align="center">-->
@@ -102,7 +107,7 @@
       <!--      </div>-->
 
     </div>
-
+    <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
     <!-- 编辑弹出框 -->
     <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
       <el-form ref="form" :model="form" label-width="70px">
@@ -142,16 +147,26 @@ export default {
         labels: ['6月', '7月', '8月', '9月', '10月'],
         datasets: [
           {
-            label: '家电',
+            label: '中国疫苗接种数量趋势',
             data: [234, 278, 270, 190, 230]
           },
           {
-            label: '百货',
-            data: [164, 178, 150, 135, 160]
-          },
+            label: '中国疫苗接种数量趋势',
+            data: [234, 278, 270, 190, 230]
+          }
+        ]
+      },
+      options3: {
+        type: 'line',
+        title: {
+          text: '中国疫苗接种比例趋势图(100人中接种人数)'
+        },
+        bgColor: '#fbfbfb',
+        labels: ['6月', '7月', '8月', '9月', '10月'],
+        datasets: [
           {
-            label: '食品',
-            data: [114, 138, 200, 235, 190]
+            label: '中国疫苗接种数量趋势',
+            data: [234, 278, 270, 190, 230]
           }
         ]
       },
@@ -173,21 +188,17 @@ export default {
   },
   created() {
     const that = this
-    let url = 'http://localhost:8181/covidApi/getCovidDataByProvince?province='+this.$route.query.province
+    let url = 'http://localhost:8181/vacinne/getChinaVacinneData';
     axios.get(url).then(function (resp) {
+        that.options2.labels = resp.data.data.dateList
+        that.options2.datasets[0].label = "中国疫苗接种数量趋势"
+        that.options2.datasets[0].data = resp.data.data.totalVaccinationsList
+        that.options2.datasets[1].label = "中国疫苗接种比例趋势图(100人中接种人数)"
+        that.options2.datasets[1].data = resp.data.data.totalVaccinationsPerHundredList
+    });
+    let urlAllCountry = 'http://localhost:8181/vacinne/getAllCountryVaccineSituationData';
+    axios.get(urlAllCountry).then(function (resp) {
       that.tableData = resp.data.data.list;
-      if(resp.data.data.provinceName != "北京市" && resp.data.data.provinceName != "天津市" && resp.data.data.provinceName != "上海市" && resp.data.data.provinceName != "重庆市")
-        that.options1.title.text = resp.data.data.provinceName+"各城市疫情数据分析图"
-      else
-        that.options1.title.text = resp.data.data.provinceName+"各区疫情数据分析图"
-      that.options1.labels = resp.data.data.cityNames
-      that.options1.datasets[0].label = "累计确诊人数"
-      that.options1.datasets[0].data = resp.data.data.confirmedCountList
-      that.options1.datasets[1].label = "累计治愈人数"
-      that.options1.datasets[1].data = resp.data.data.curedCountList
-      that.options1.datasets[2].label = "累计死亡人数"
-      that.options1.datasets[2].data = resp.data.data.deadCountList
-
     });
   },
   methods: {
@@ -296,13 +307,13 @@ export default {
   font-size: 22px;
   color: #1f2f3d;
 }
-.schart-box {
+.schart-box-vaccine {
   display: inline-block;
-  margin: 20px;
+  margin: 0px;
 }
 .schartVacinne {
   width: 1250px;
-  height: 400px;
+  height: 200px;
 }
 .content-title {
   clear: both;

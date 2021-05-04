@@ -227,8 +227,20 @@ export default {
               },
               {
                 icon: 'el-icon-lx-cascades',
-                index: 'worldMap',
-                title: '全球疫情接种信息'
+                index: '13',
+                title: '疫苗专区',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'VacinneData',
+                    title: '全球疫情接种信息'
+                  },
+                  {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'AddVaccineInfo',
+                    title: '添加疫苗接种点'
+                  }
+                ]
               },
                 {
                     icon: 'el-icon-lx-calendar',

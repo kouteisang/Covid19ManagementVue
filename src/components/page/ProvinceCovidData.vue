@@ -23,6 +23,10 @@
                 ref="multipleTable"
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange"
+                :default-sort = "{prop: 'confirmedCount', order: 'descending',
+                                  prop:'suspectedCount', order:'descending',
+                                  prop:'curedCount', order:'descending',
+                                  prop:'deadCount', order:'descending'}"
             >
                 <el-table-column prop="province" label="省份"></el-table-column>
                 <el-table-column label="省份地图" align="center">
@@ -42,10 +46,10 @@
 <!--                        >{{scope.row.state}}</el-tag>-->
 <!--                    </template>-->
 <!--                </el-table-column>-->
-              <el-table-column prop="confirmedCount" label="累计确诊人数"></el-table-column>
-              <el-table-column prop="suspectedCount" label="疑似病例"></el-table-column>
-              <el-table-column prop="curedCount" label="治愈人数"></el-table-column>
-              <el-table-column prop="deadCount" label="死亡人数"></el-table-column>
+              <el-table-column prop="confirmedCount" label="累计确诊人数" sortable></el-table-column>
+              <el-table-column prop="suspectedCount" label="疑似病例" sortable></el-table-column>
+              <el-table-column prop="curedCount" label="治愈人数" sortable></el-table-column>
+              <el-table-column prop="deadCount" label="死亡人数" sortable></el-table-column>
 <!--              <el-table-column prop="date" label="注册时间"></el-table-column>-->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -81,7 +85,7 @@
                 ></el-pagination>
             </div>
         </div>
-
+      <el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
