@@ -30,15 +30,15 @@
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="identityId" label="身份证号" width="165" align="center"></el-table-column>
-                <el-table-column prop="realName" label="姓名" width = "80"></el-table-column>
-              <el-table-column prop="phone" label="联系电话" width = "120"></el-table-column>
-                <el-table-column prop="province" label="省份" width = "80"></el-table-column>
-              <el-table-column prop="city" label="城市" width = "72"></el-table-column>
-                <el-table-column prop="district" label="市辖区" width = "70"></el-table-column>
-               <el-table-column prop="community" label="详细地址" width = "230"></el-table-column>
-              <el-table-column prop="emergencyName" label="紧急联系人姓名" width = "120"></el-table-column>
-                <el-table-column prop="emergencyPhone" label="紧急联系人电话" width = "120"></el-table-column>
+                <el-table-column prop="identityId" label="身份证号" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" ></el-table-column>
+              <el-table-column prop="phone" label="联系电话" ></el-table-column>
+                <el-table-column prop="province" label="省份"></el-table-column>
+              <el-table-column prop="city" label="城市" ></el-table-column>
+                <el-table-column prop="district" label="市辖区" ></el-table-column>
+               <el-table-column prop="community" label="详细地址"></el-table-column>
+              <el-table-column prop="emergencyName" label="紧急联系人姓名" ></el-table-column>
+                <el-table-column prop="emergencyPhone" label="紧急联系人电话"></el-table-column>
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -168,20 +168,20 @@ export default {
         // 触发搜索按钮
         handleSearch() {
             const that = this
-            this.$set(this.query, 'pageIndex', 1);
-            let url = 'http://localhost:8181/user/findUser'
-            let params = {
-              page: 1,
-              size: 10,
-              name: this.query.realName,
-              phone: this.query.phone,
-              identityId: this.query.identityId
-            }
-            axios.get(url,{params:params}).then(function (resp) {
-              that.tableData = resp.data.data.list;
-              that.pageTotal = resp.data.data.total;
-              that.size = resp.data.data.size;
-            }).catch(function (resp) {
+          this.$set(this.query, 'pageIndex', 1);
+          let url = 'http://localhost:8181/user/findUser'
+          let params = {
+            page: 1,
+            size: 10,
+            name: this.query.realName,
+            phone: this.query.phone,
+            identityId: this.query.identityId
+          }
+          axios.get(url,{params:params}).then(function (resp) {
+            that.tableData = resp.data.data.list;
+            that.pageTotal = resp.data.data.total;
+            that.size = resp.data.data.size;
+          }).catch(function (resp) {
 
             })
         },

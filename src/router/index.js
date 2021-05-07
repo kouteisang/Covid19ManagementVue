@@ -202,6 +202,11 @@ export default new Router({
                     path: '/addVaccineInfo',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/AddVaccineInfo.vue'),
                     meta: { title: '添加疫苗接种点' }
+                },
+                {
+                    path: 'vaccineDataList',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/VaccineDataList.vue'),
+                    meta: { title: '疫苗预约/报备' }
                 }
             ]
         },

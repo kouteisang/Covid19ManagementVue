@@ -32,16 +32,24 @@
           ref="multipleTable"
           header-cell-class-name="table-header"
           @selection-change="handleSelectionChange"
+          :default-sort = "{prop: 'confirmedCount', order: 'descending',
+                                  prop:'suspectedCount', order:'descending',
+                                  prop:'curedCount', order:'descending',
+                                  prop:'deadCount', order:'descending',
+                                  prop:'highDangerCount', order:'descending',
+                                  prop:'midDangerCount', order:'descending',
+                                  prop:'currentConfirmedCount', order:'currentConfirmedCount',
+                                  }"
       >
 <!--        <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>-->
         <el-table-column prop="cityName" label="城市名"></el-table-column>
-        <el-table-column prop="currentConfirmedCount" label="当前确诊人数"></el-table-column>
-        <el-table-column prop="confirmedCount" label="累计确诊人数"></el-table-column>
-        <el-table-column prop="suspectedCount" label="疑似病例"></el-table-column>
-        <el-table-column prop="curedCount" label="治愈人数"></el-table-column>
-        <el-table-column prop="deadCount" label="死亡人数"></el-table-column>
-        <el-table-column prop="highDangerCount" label="重症患者人数"></el-table-column>
-        <el-table-column prop="midDangerCount" label="中轻度患者人数"></el-table-column>
+        <el-table-column prop="currentConfirmedCount" label="当前确诊人数" sortable></el-table-column>
+        <el-table-column prop="confirmedCount" label="累计确诊人数" sortable></el-table-column>
+        <el-table-column prop="suspectedCount" label="疑似病例" sortable></el-table-column>
+        <el-table-column prop="curedCount" label="治愈人数" sortable></el-table-column>
+        <el-table-column prop="deadCount" label="死亡人数" sortable></el-table-column>
+        <el-table-column prop="highDangerCount" label="重症患者人数" sortable></el-table-column>
+        <el-table-column prop="midDangerCount" label="中轻度患者人数" sortable></el-table-column>
 
 <!--        <el-table-column label="账户余额">-->
 <!--          <template slot-scope="scope">￥{{scope.row.money}}</template>-->

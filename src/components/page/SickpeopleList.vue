@@ -29,17 +29,17 @@
           header-cell-class-name="table-header"
           @selection-change="handleSelectionChange"
       >
-        <el-table-column type="selection" width="55" align="center"></el-table-column>
-        <el-table-column prop="identityId" label="身份证号" width="165" align="center"></el-table-column>
-        <el-table-column prop="realName" label="姓名" width = "80"></el-table-column>
-        <el-table-column prop="phone" label="联系电话" width = "120"></el-table-column>
-        <el-table-column prop="sickReason" label="病因" width = "80"></el-table-column>
-        <el-table-column prop="whenSick" label="生病日期" width = "105"></el-table-column>
-        <el-table-column prop="ifFavour" label="是否发烧" width = "80"></el-table-column>
-        <el-table-column prop="covidTest" label="核酸检测结果" width = "110"></el-table-column>
-        <el-table-column prop="bodyTemperature" label="体温报备" width = "85"></el-table-column>
-        <el-table-column prop="community" label="详细地址" width = "235"></el-table-column>
-        <el-table-column label="操作" width="180" align="center">
+        <el-table-column type="selection" align="center"></el-table-column>
+        <el-table-column prop="identityId" label="身份证号" align="center"></el-table-column>
+        <el-table-column prop="realName" label="姓名"></el-table-column>
+        <el-table-column prop="phone" label="联系电话"></el-table-column>
+        <el-table-column prop="sickReason" label="病因"></el-table-column>
+        <el-table-column prop="whenSick" label="生病日期"></el-table-column>
+        <el-table-column prop="ifFavour" label="是否发烧"></el-table-column>
+        <el-table-column prop="covidTest" label="核酸检测结果"></el-table-column>
+        <el-table-column prop="bodyTemperature" label="体温报备"></el-table-column>
+        <el-table-column prop="community" label="详细地址"></el-table-column>
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
                 type="text"

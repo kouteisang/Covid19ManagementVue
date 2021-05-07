@@ -239,6 +239,11 @@ export default {
                     icon: 'el-icon-lx-cascades',
                     index: 'AddVaccineInfo',
                     title: '添加疫苗接种点'
+                  },
+                  {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'VaccineDataList',
+                    title: '疫苗预约/报备'
                   }
                 ]
               },
