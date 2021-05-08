@@ -244,6 +244,16 @@ export default {
                     icon: 'el-icon-lx-cascades',
                     index: 'VaccineDataList',
                     title: '疫苗预约/报备'
+                  },
+                  {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'VaccineReservationList',
+                    title: '疫苗接种记录'
+                  },
+                  {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'EditVaccineInfo',
+                    title: '修改疫苗接种状态'
                   }
                 ]
               },

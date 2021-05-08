@@ -112,8 +112,6 @@ export default {
               that.$message.success('保存接种点信息成功！');
             })
           })
-          // alert(this.form.type)
-          // this.$message.success('提交成功！');
         }
     }
 };

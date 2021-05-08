@@ -207,6 +207,16 @@ export default new Router({
                     path: 'vaccineDataList',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/VaccineDataList.vue'),
                     meta: { title: '疫苗预约/报备' }
+                },
+                {
+                    path: 'vaccineReservationList',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/VaccineReservationList.vue'),
+                    meta: { title: '疫苗接种记录' }
+                },
+                {
+                    path: 'editVaccineInfo',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/EditVaccineInfo.vue'),
+                    meta: { title: '修改接种状态' }
                 }
             ]
         },

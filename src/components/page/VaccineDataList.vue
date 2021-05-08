@@ -167,6 +167,8 @@ export default {
         console.log(resp.data.code)
         if(resp.data.code == "200"){
           that.$message.success('预约疫苗接种成功');
+        }else {
+          that.$message.warning(resp.data.msg);
         }
       })
 
