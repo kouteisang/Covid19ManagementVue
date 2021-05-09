@@ -118,23 +118,30 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-cascades',
-                    index: 'table',
-                    title: '居民信息管理'
+                    index: '16',
+                    title: '居民信息管理专区',
+                  subs: [
+                    {
+                      icon: 'el-icon-lx-attention',
+                      index: 'table',
+                      title: '居民信息管理'
+                    },
+                    {
+                      icon: 'el-icon-lx-attention',
+                      index: 'addcommunityuserinfo',
+                      title: '添加居民信息'
+                    }
+                  ]
                 },
-              {
-                icon: 'el-icon-lx-cascades',
-                index: 'addcommunityuserinfo',
-                title: '添加居民信息'
-              },
-              {
-                    icon: 'el-icon-lx-copy',
-                    index: 'tabs',
-                    title: 'tab选项卡'
-                },
+              // {
+              //       icon: 'el-icon-lx-copy',
+              //       index: 'tabs',
+              //       title: 'tab选项卡'
+              //   },
               {
                 icon: 'el-icon-lx-cascades',
                 index: '8',
-                title: '病情人员管理',
+                title: '病情人员管理专区',
                 subs: [
                   {
                     icon: 'el-icon-lx-attention',
@@ -151,7 +158,7 @@ export default {
               {
                 icon: 'el-icon-lx-cascades',
                 index: '9',
-                title: '公告管理',
+                title: '公告管理专区',
                 subs: [
                   {
                     icon: 'el-icon-lx-attention',
@@ -168,7 +175,7 @@ export default {
               {
                 icon: 'el-icon-lx-cascades',
                 index: '10',
-                title: '疫情数据分析',
+                title: '疫情数据分析专区',
                 subs: [
                   {
                     icon: 'el-icon-lx-attention',
@@ -190,7 +197,7 @@ export default {
               {
                 icon: 'el-icon-lx-cascades',
                 index: '11',
-                title: '物资管理',
+                title: '物资管理专区',
                 subs: [
                   {
                     icon: 'el-icon-lx-attention',
@@ -211,7 +218,7 @@ export default {
               },{
                 icon: 'el-icon-lx-cascades',
                 index: '12',
-                title: '疫情新闻管理',
+                title: '疫情新闻管理专区',
                 subs: [
                   {
                     icon: 'el-icon-lx-attention',
@@ -222,8 +229,15 @@ export default {
               },
               {
                 icon: 'el-icon-lx-cascades',
-                index: 'rumorList',
-                title: '疫情谣言专区'
+                index: '15',
+                title: '疫情谣言专区',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'rumorList',
+                    title: '疫情谣言'
+                  }
+                ]
               },
               {
                 icon: 'el-icon-lx-cascades',
@@ -257,45 +271,45 @@ export default {
                   }
                 ]
               },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '3',
-                    title: '表单相关',
-                    subs: [
-                        {
-                            index: 'form',
-                            title: '基本表单'
-                        },
-                        {
-                            index: '3-2',
-                            title: '三级菜单',
-                            subs: [
-                                {
-                                    index: 'editor',
-                                    title: '富文本编辑器'
-                                },
-                                {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器'
-                                }
-                            ]
-                        },
-                        {
-                            index: 'upload',
-                            title: '文件上传'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-emoji',
-                    index: 'icon',
-                    title: '自定义图标'
-                },
-                {
-                    icon: 'el-icon-pie-chart',
-                    index: 'charts',
-                    title: 'schart图表'
-                },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '3',
+                //     title: '表单相关',
+                //     subs: [
+                //         {
+                //             index: 'form',
+                //             title: '基本表单'
+                //         },
+                //         {
+                //             index: '3-2',
+                //             title: '三级菜单',
+                //             subs: [
+                //                 {
+                //                     index: 'editor',
+                //                     title: '富文本编辑器'
+                //                 },
+                //                 {
+                //                     index: 'markdown',
+                //                     title: 'markdown编辑器'
+                //                 }
+                //             ]
+                //         },
+                //         {
+                //             index: 'upload',
+                //             title: '文件上传'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-emoji',
+                //     index: 'icon',
+                //     title: '自定义图标'
+                // },
+                // {
+                //     icon: 'el-icon-pie-chart',
+                //     index: 'charts',
+                //     title: 'schart图表'
+                // },
                 // {
                 //     icon: 'el-icon-rank',
                 //     index: '6',
@@ -316,21 +330,21 @@ export default {
                 //     index: 'i18n',
                 //     title: '国际化功能'
                 // },
-                {
-                    icon: 'el-icon-lx-warn',
-                    index: '7',
-                    title: '错误处理',
-                    subs: [
-                        {
-                            index: 'permission',
-                            title: '权限测试'
-                        },
-                        {
-                            index: '404',
-                            title: '404页面'
-                        }
-                    ]
-                },
+                // {
+                //     icon: 'el-icon-lx-warn',
+                //     index: '7',
+                //     title: '错误处理',
+                //     subs: [
+                //         {
+                //             index: 'permission',
+                //             title: '权限测试'
+                //         },
+                //         {
+                //             index: '404',
+                //             title: '404页面'
+                //         }
+                //     ]
+                // },
                 // {
                 //     icon: 'el-icon-lx-redpacket_fill',
                 //     index: '/donate',

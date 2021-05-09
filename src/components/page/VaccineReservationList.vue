@@ -103,7 +103,8 @@ export default {
       reverse: true,
       activities: [{
         content: '',
-        timestamp: ''
+        timestamp: '',
+        color: '#0bbd87'
       }]
     };
   },
@@ -192,7 +193,7 @@ export default {
       this.idx = index;
       this.form = row;
       this.editVisible = true;
-      let url = "http://localhost:8181/vacinne/getVaccineSpecificByIdentityId?identityId=" + localStorage.getItem("ms_username")
+      let url = "http://localhost:8181/vacinne/getVaccineSpecificByIdentityId?identityId=" + this.form.identityId
       axios.get(url).then(function (resp){
         that.activities = resp.data.data.vaccineSpevificDTOS
       })

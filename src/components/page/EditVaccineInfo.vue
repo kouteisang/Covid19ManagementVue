@@ -3,9 +3,9 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-calendar"></i> 病情人员管理
+          <i class="el-icon-lx-calendar"></i> 疫苗专区
         </el-breadcrumb-item>
-        <el-breadcrumb-item>添加生病人员</el-breadcrumb-item>
+        <el-breadcrumb-item>修改疫苗接种状态</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">

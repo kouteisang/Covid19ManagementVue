@@ -2,7 +2,10 @@
   <div class="">
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-lx-copy"></i> 公告列表</el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <i class="el-icon-lx-calendar"></i> 公告管理专区
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>公告列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="container">

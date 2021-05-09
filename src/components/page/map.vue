@@ -28,7 +28,9 @@
                     :data="tableData"
                     height="500"
                     border
-                    style="width: 100%">
+                    style="width: 100%"
+                    :default-sort="{prop: 'count', order: 'descending'}"
+                >
                   <el-table-column
                       prop="province"
                       label="省份"
@@ -37,7 +39,8 @@
                   <el-table-column
                       prop="count"
                       label="人数"
-                      width="180">
+                      width="180"
+                      sortable>
                   </el-table-column>
                 </el-table>
               </div>
