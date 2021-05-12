@@ -146,12 +146,12 @@ export default {
     data() {
         return {
           address:localStorage.getItem("address"),
-            confirmedCount: 0,
-          curedCount: 0,
-          deadCount: 0,
-            confirmedPeople: 30,
-            curedPeople:30,
-            deadPeople:30,
+            confirmedCount: 158823878,
+          curedCount: 120929393,
+          deadCount: 3329787,
+            confirmedPeople: 56.7,
+            curedPeople:43.1,
+            deadPeople:0.2,
             toDoThing:'',
             editVisible: false,
             nowTime: localStorage.getItem("nowTime"),
@@ -277,6 +277,9 @@ export default {
           })
       }
     },created() {
+        if(localStorage.getItem("nowRole") == null){
+          this.$router.push('/login')
+        }
         const that = this
         let urlTodoList = 'http://localhost:8181/todo/getTodoList?identityId=' + localStorage.getItem('ms_username')
         axios.get(urlTodoList).then(function (resp) {

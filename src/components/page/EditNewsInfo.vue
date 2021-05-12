@@ -34,6 +34,7 @@ export default {
   name: "EditNewsInfo",
   data(){
     return{
+      nowRole: localStorage.getItem("nowRole"),
       form:{
         newsTitle:'',
         newsContent:''

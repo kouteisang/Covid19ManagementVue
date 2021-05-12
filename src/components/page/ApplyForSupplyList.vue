@@ -29,15 +29,15 @@
           header-cell-class-name="table-header"
           @selection-change="handleSelectionChange"
       >
-        <el-table-column prop="identityId" label="身份证号" width="165" align="center"></el-table-column>
-        <el-table-column prop="realName" label="姓名" width = "80"></el-table-column>
-        <el-table-column prop="phone" label="联系电话" width = "120"></el-table-column>
-        <el-table-column prop="community" label="详细地址" width = "230"></el-table-column>
-        <el-table-column prop="supplyType" label="物资类型" width = "120"></el-table-column>
-        <el-table-column prop="supplyContent" label="物资内容" width = "120"></el-table-column>
-        <el-table-column prop="ageValue" label="年龄段" width = "100"></el-table-column>
-        <el-table-column prop="isEmergencyValue" label="是否紧急" width = "80"></el-table-column>
-        <el-table-column prop="createTime" label="报备时间" width = "175"></el-table-column>
+        <el-table-column prop="identityId" label="身份证号" align="center"></el-table-column>
+        <el-table-column prop="realName" label="姓名" ></el-table-column>
+        <el-table-column prop="phone" label="联系电话" ></el-table-column>
+        <el-table-column prop="community" label="详细地址" ></el-table-column>
+        <el-table-column prop="supplyType" label="物资类型" ></el-table-column>
+        <el-table-column prop="supplyContent" label="物资内容"></el-table-column>
+        <el-table-column prop="ageValue" label="年龄段" ></el-table-column>
+        <el-table-column prop="isEmergencyValue" label="是否紧急"></el-table-column>
+        <el-table-column prop="createTime" label="报备时间"></el-table-column>
         <el-table-column label="操作" width="105" align="center">
           <template slot-scope="scope" >
             <el-popover

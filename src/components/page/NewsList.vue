@@ -20,7 +20,8 @@
             <el-table-column prop="createTime" width="180"></el-table-column>
             <el-table-column width="120">
               <template slot-scope="scope">
-                <el-button size="small" @click="handleRead(scope.$index, scope.row)">查看详情</el-button>
+                <el-button  v-if="nowRole == 0" size="small" @click="handleRead(scope.$index, scope.row)">查看详情</el-button>
+                <el-button  v-if="nowRole == 1" size="small" @click="handleEdit(scope.$index, scope.row)">修改公告</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -37,6 +38,26 @@
         ></el-pagination>
       </div>
     </div>
+
+
+
+        <el-dialog title="公告详情" :visible.sync="editVisible" width="30%">
+          <el-form ref="form" :model="form" label-width="70px">
+            <el-form-item label="标题：">
+              <div>{{title}}</div>
+            </el-form-item>
+            <el-form-item label="详情：">
+              <div>{{content}}</div>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+                    <el-button @click="editVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="editVisible = false">确 定</el-button>
+                </span>
+        </el-dialog>
+
+
+
   </div>
 </template>
 
@@ -49,6 +70,9 @@ export default {
   name: 'NewsList',
   data() {
     return {
+      title:'',
+      content:'',
+      nowRole: localStorage.getItem("nowRole"),
       news_size:'',
       message: 'first',
       showHeader: false,
@@ -68,7 +92,16 @@ export default {
     }
   },
   methods: {
-    handleRead(index, row) {
+
+
+    handleRead(index, row){
+      this.title = row.newsTitle;
+      this.content = row.newsContent;
+      this.idx = index;
+      this.editVisible = true;
+    },
+
+    handleEdit(index, row) {
       this.$router.push({
         path:'/editNewsInfo',
         query:{

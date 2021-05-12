@@ -45,7 +45,7 @@
             <el-input v-model="form.emergencyPhone" placeholder="请输入紧急联系人电话" style="width:300px"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">添加用户</el-button>
+            <el-button type="primary" @click="onSubmit">信息报备</el-button>
           </el-form-item>
         </el-form>
       </div>

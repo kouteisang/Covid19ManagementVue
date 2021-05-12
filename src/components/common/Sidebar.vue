@@ -359,21 +359,204 @@ export default {
             },
             {
               icon: 'el-icon-lx-cascades',
-              index: 'table',
-              title: '居民信息管理'
+              index: '16',
+              title: '居民信息报备专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'addcommunityuserinfo',
+                  title: '居民信息报备'
+                }
+              ]
             },
             {
               icon: 'el-icon-lx-cascades',
-              index: 'addcommunityuserinfo',
-              title: '添加居民信息'
+              index: '8',
+              title: '病情人员报备专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'addsickpeople',
+                  title: '生病人员报备'
+                },
+              ]
             },
             {
-              icon: 'el-icon-lx-copy',
-              index: 'tabs',
-              title: 'tab选项卡'
-            }
-
-          ]
+              icon: 'el-icon-lx-cascades',
+              index: '9',
+              title: '公告查阅专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'newsList',
+                  title: '公告列表'
+                }
+              ]
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: '10',
+              title: '疫情数据分析专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'allCountryCovidData',
+                  title: '全球疫情数据'
+                },
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'chinaCovidData',
+                  title: '中国疫情数据'
+                },
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'provinceCovidData',
+                  title: '各地区疫情数据'
+                }
+              ]
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: '11',
+              title: '物资缺失报备专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'AskForSupply',
+                  title: '物资缺失报备'
+                },
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'SupplyStatics',
+                  title: '物资缺失统计'
+                },
+              ]
+            },{
+              icon: 'el-icon-lx-cascades',
+              index: '12',
+              title: '疫情新闻管理专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'CovidNewsList',
+                  title: '疫情新闻'
+                }
+              ]
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: '15',
+              title: '疫情谣言专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'rumorList',
+                  title: '疫情谣言'
+                }
+              ]
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: '13',
+              title: '疫苗专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-cascades',
+                  index: 'VacinneData',
+                  title: '全球疫情接种信息'
+                },
+                {
+                  icon: 'el-icon-lx-cascades',
+                  index: 'VaccineDataList',
+                  title: '疫苗预约/报备'
+                },
+                {
+                  icon: 'el-icon-lx-cascades',
+                  index: 'EditVaccineInfo',
+                  title: '修改疫苗接种状态'
+                }
+              ]
+            },
+            // {
+            //     icon: 'el-icon-lx-calendar',
+            //     index: '3',
+            //     title: '表单相关',
+            //     subs: [
+            //         {
+            //             index: 'form',
+            //             title: '基本表单'
+            //         },
+            //         {
+            //             index: '3-2',
+            //             title: '三级菜单',
+            //             subs: [
+            //                 {
+            //                     index: 'editor',
+            //                     title: '富文本编辑器'
+            //                 },
+            //                 {
+            //                     index: 'markdown',
+            //                     title: 'markdown编辑器'
+            //                 }
+            //             ]
+            //         },
+            //         {
+            //             index: 'upload',
+            //             title: '文件上传'
+            //         }
+            //     ]
+            // },
+            // {
+            //     icon: 'el-icon-lx-emoji',
+            //     index: 'icon',
+            //     title: '自定义图标'
+            // },
+            // {
+            //     icon: 'el-icon-pie-chart',
+            //     index: 'charts',
+            //     title: 'schart图表'
+            // },
+            // {
+            //     icon: 'el-icon-rank',
+            //     index: '6',
+            //     title: '拖拽组件',
+            //     subs: [
+            //         {
+            //             index: 'drag',
+            //             title: '拖拽列表'
+            //         },
+            //         {
+            //             index: 'dialog',
+            //             title: '拖拽弹框'
+            //         }
+            //     ]
+            // },
+            // {
+            //     icon: 'el-icon-lx-global',
+            //     index: 'i18n',
+            //     title: '国际化功能'
+            // },
+            // {
+            //     icon: 'el-icon-lx-warn',
+            //     index: '7',
+            //     title: '错误处理',
+            //     subs: [
+            //         {
+            //             index: 'permission',
+            //             title: '权限测试'
+            //         },
+            //         {
+            //             index: '404',
+            //             title: '404页面'
+            //         }
+            //     ]
+            // },
+            // {
+            //     icon: 'el-icon-lx-redpacket_fill',
+            //     index: '/donate',
+            //     title: '支持作者'
+            // }
+          ],
         };
     },
     computed: {
