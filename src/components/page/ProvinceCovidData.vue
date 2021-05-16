@@ -8,14 +8,6 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-<!--            <div class="handle-box">-->
-<!--                <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">-->
-<!--                    <el-option key="1" label="广东省" value="广东省"></el-option>-->
-<!--                    <el-option key="2" label="湖南省" value="湖南省"></el-option>-->
-<!--                </el-select>-->
-<!--                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>-->
-<!--                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>-->
-<!--            </div>-->
             <el-table
                 :data="tableData"
                 border
@@ -26,7 +18,9 @@
                 :default-sort = "{prop: 'confirmedCount', order: 'descending',
                                   prop:'suspectedCount', order:'descending',
                                   prop:'curedCount', order:'descending',
-                                  prop:'deadCount', order:'descending'}"
+                                  prop:'deadCount', order:'descending',
+                                  prop:'currentConfirmedCount', order:'descending',
+                                  }"
             >
                 <el-table-column prop="province" label="省份"></el-table-column>
                 <el-table-column label="省份地图" align="center">
@@ -38,14 +32,7 @@
                         ></el-image>
                   </template>
                 </el-table-column>
-                <el-table-column prop="currentConfirmedCount" label="当前确诊人数"></el-table-column>
-<!--                <el-table-column label="状态" align="center">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <el-tag-->
-<!--                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"-->
-<!--                        >{{scope.row.state}}</el-tag>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
+                <el-table-column prop="currentConfirmedCount" label="当前确诊人数" sortable></el-table-column>
               <el-table-column prop="confirmedCount" label="累计确诊人数" sortable></el-table-column>
               <el-table-column prop="suspectedCount" label="疑似病例" sortable></el-table-column>
               <el-table-column prop="curedCount" label="治愈人数" sortable></el-table-column>
@@ -64,13 +51,6 @@
                           type="text"
                           icon="el-icon-lx-roundclose"
                       >暂不支持</el-button>
-
-                      <!--                        <el-button-->
-<!--                            type="text"-->
-<!--                            icon="el-icon-delete"-->
-<!--                            class="red"-->
-<!--                            @click="handleDelete(scope.$index, scope.row)"-->
-<!--                        >删除</el-button>-->
                     </template>
                 </el-table-column>
             </el-table>
@@ -111,6 +91,29 @@ export default {
     name: 'ProvinceCovidData',
     data() {
         return {
+          options1: {
+            type: 'bar',
+            title: {
+              text: '疫情数据分析图'
+            },
+            bgColor: '#fbfbfb',
+            labels: [],
+            datasets: [
+              {
+                label: '',
+                fillColor: 'rgba(241, 49, 74, 0.5)',
+                data: []
+              },
+              {
+                label: '',
+                data: []
+              },
+              {
+                label: '',
+                data: []
+              },
+            ]
+          },
           pictureurl:"https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
             query: {
                 address: '',
@@ -140,7 +143,7 @@ export default {
         var url = "http://localhost:8181/covidApi/getAllProvincesCovidData"
         axios.get(url).then(function (resp) {
           that.tableData = resp.data.data.listProviceCovidDataDTO;
-
+          that.options1.title.text = resp.data.data.provinceName+"各城市疫情数据分析图"
         })
       },
         // 获取 easy-mock 的模拟数据
@@ -234,5 +237,13 @@ export default {
     margin: auto;
     width: 40px;
     height: 40px;
+}
+.schart-box {
+  display: inline-block;
+  margin: 20px;
+}
+.schartCity {
+  width: 1250px;
+  height: 400px;
 }
 </style>

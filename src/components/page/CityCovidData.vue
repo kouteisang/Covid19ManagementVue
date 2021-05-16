@@ -11,20 +11,6 @@
       <div class="schart-box">
         <schart class="schartCity" canvasId="bar" :options="options1"></schart>
       </div>
-<!--      <div class="handle-box">-->
-<!--        <el-button-->
-<!--            type="primary"-->
-<!--            icon="el-icon-delete"-->
-<!--            class="handle-del mr10"-->
-<!--            @click="delAllSelection"-->
-<!--        >批量删除</el-button>-->
-<!--        <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">-->
-<!--          <el-option key="1" label="广东省" value="广东省"></el-option>-->
-<!--          <el-option key="2" label="湖南省" value="湖南省"></el-option>-->
-<!--        </el-select>-->
-<!--        <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>-->
-<!--        <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>-->
-<!--      </div>-->
       <el-table
           :data="tableData"
           border
@@ -41,7 +27,6 @@
                                   prop:'currentConfirmedCount', order:'currentConfirmedCount',
                                   }"
       >
-<!--        <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>-->
         <el-table-column prop="cityName" label="城市名"></el-table-column>
         <el-table-column prop="currentConfirmedCount" label="当前确诊人数" sortable></el-table-column>
         <el-table-column prop="confirmedCount" label="累计确诊人数" sortable></el-table-column>
@@ -50,20 +35,6 @@
         <el-table-column prop="deadCount" label="死亡人数" sortable></el-table-column>
         <el-table-column prop="highDangerCount" label="重症患者人数" sortable></el-table-column>
         <el-table-column prop="midDangerCount" label="中轻度患者人数" sortable></el-table-column>
-
-<!--        <el-table-column label="账户余额">-->
-<!--          <template slot-scope="scope">￥{{scope.row.money}}</template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column label="头像(查看大图)" align="center">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-image-->
-<!--                class="table-td-thumb"-->
-<!--                :src="scope.row.thumb"-->
-<!--                :preview-src-list="[scope.row.thumb]"-->
-<!--            ></el-image>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--        <el-table-column prop="address" label="地址"></el-table-column>-->
         <el-table-column label="状态" align="center">
           <template slot-scope="scope">
             <el-tag
@@ -80,35 +51,7 @@
             >未发生严重疫情</el-tag>
           </template>
         </el-table-column>
-
-<!--        <el-table-column prop="date" label="注册时间"></el-table-column>-->
-<!--        <el-table-column label="操作" width="180" align="center">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-button-->
-<!--                type="text"-->
-<!--                icon="el-icon-edit"-->
-<!--                @click="handleEdit(scope.$index, scope.row)"-->
-<!--            >编辑</el-button>-->
-<!--            <el-button-->
-<!--                type="text"-->
-<!--                icon="el-icon-delete"-->
-<!--                class="red"-->
-<!--                @click="handleDelete(scope.$index, scope.row)"-->
-<!--            >删除</el-button>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
       </el-table>
-<!--      <div class="pagination">-->
-<!--        <el-pagination-->
-<!--            background-->
-<!--            layout="total, prev, pager, next"-->
-<!--            :current-page="query.pageIndex"-->
-<!--            :page-size="query.pageSize"-->
-<!--            :total="pageTotal"-->
-<!--            @current-change="handlePageChange"-->
-<!--        ></el-pagination>-->
-<!--      </div>-->
-
     </div>
 
     <!-- 编辑弹出框 -->

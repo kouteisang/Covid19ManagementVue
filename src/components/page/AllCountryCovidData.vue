@@ -14,25 +14,23 @@
         关于新型冠状病毒(Covid-19)：
         <br>
         小贴士1：
-        {{note1}}
+        病毒：SARS-CoV-2，其导致疾病命名COVID-19
         <br>
         小贴士2：
-        {{note2}}
+        传染源：新冠肺炎的患者。无症状感染者也可能成为传染源。
         <br>
         小贴士3：
-        {{note3}}
+        传播途径：经呼吸道飞沫、接触传播是主要的传播途径。气溶胶传播和消化道等传播途径尚待明确。
         <br>
         小贴士4：
-        {{remark1}}
+        易感人群：人群普遍易感。老年人及有基础疾病者感染后病情较重，儿童及婴幼儿也有发病。
         <br>
         小贴士5：
-        {{remark2}}
+        潜伏期：一般为3～7天，最长不超过14天，潜伏期内可能存在传染性，其中无症状病例传染性十分罕见。
         <br>
         小贴士6：
-        {{remark3}}
+        宿主：野生动物，可能为中华菊头蝠。
         <br>
-        现存确诊人数：
-        {{currentConfirmedCount}} 人
       </div>
         <div class="form-box">
           <div class="handle-box">
@@ -146,12 +144,7 @@ export default {
     let urlOverAll = "http://localhost:8181/covidApi/getOverAll"
     axios.get(urlOverAll).then(function (resp) {
       console.log(resp)
-      that.note1 = resp.data.data.note1
-      that.note2 = resp.data.data.note2
-      that.note3 = resp.data.data.note3
-      that.remark1 = resp.data.data.remark1
-      that.remark2 = resp.data.data.remark2
-      that.remark3 = resp.data.data.remark3
+
       that.updateTime = resp.data.data.updateTime
       let confirmedCount = parseInt(resp.data.data.confirmedCount)
       let confirmedCountYes = parseInt(resp.data.data.confirmedCountYes)
@@ -164,14 +157,13 @@ export default {
       that.options1.datasets[1].data = [curedCountYes,curedCount]
       that.options1.datasets[2].data = [deadCountYes,deadCount]
       that.currentConfirmedCount = currentConfirmedCount
-      that.options1.labels = [resp.data.data.yesterday, resp.data.data.now]
     })
 
   },
   methods:{
     getAllSupportCities(){
       const that = this
-      let url = "http://localhost:8181/covidApi/getAllSupportCities";
+      let url = "http://localhost:8181/covidApi/getAllSupportCitiesTencent";
       axios.get(url).then(function (resp){
         console.log(resp.data.data)
         that.form.regions = resp.data.data
@@ -179,12 +171,12 @@ export default {
     },
     onSubmit(){
       const that = this
-      let url = "http://localhost:8181/covidApi/getCovidDataByCountry";
+      let url = "http://localhost:8181/covidApi/getCovidDataByCountryTencent";
       let params = {
         country: this.form.regions.label
       }
       axios.get(url,{params:params}).then(function (resp) {
-        that.options.title.text = resp.data.data.countryName + '疫情数据分析饼状图'
+        that.options.title.text = that.form.regions.label + '疫情数据分析饼状图'
         let currentConfirmedCount = parseInt(resp.data.data.currentConfirmedCount)
         let confirmedCount = parseInt(resp.data.data.confirmedCount)
         let suspectedCount = parseInt(resp.data.data.suspectedCount)
@@ -192,6 +184,18 @@ export default {
         let deadCount = parseInt(resp.data.data.deadCount)
         that.options.datasets[0].data = [currentConfirmedCount,confirmedCount,suspectedCount,curedCount,deadCount]
         that.updateTime = resp.data.data.updateTime
+
+
+
+        let confirmedCountYes = parseInt(resp.data.data.confirmedCountYes)
+        let curedCountYes = parseInt(resp.data.data.curedCountYes)
+        let deadCountYes = parseInt(resp.data.data.deadCountYes)
+        that.options1.title.text =  that.form.regions.label+"疫情数据分析图"
+        that.options1.datasets[0].data = [confirmedCountYes,confirmedCount]
+        that.options1.datasets[1].data = [curedCountYes,curedCount]
+        that.options1.datasets[2].data = [deadCountYes,deadCount]
+        that.currentConfirmedCount = currentConfirmedCount
+
       })
     }
   }

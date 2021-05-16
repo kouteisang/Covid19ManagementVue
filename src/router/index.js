@@ -15,6 +15,16 @@ export default new Router({
             meta: { title: '自述文件' },
             children: [
                 {
+                    path:'epidemicReport',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/EpidemicReport.vue'),
+                    meta:{title: '行程报备'}
+                },
+                {
+                    path:'covidNewsListTencent',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/CovidNewsListTencent.vue'),
+                    meta:{title: '各省市新闻'}
+                },
+                {
                     path:'addsickpeople',
                     component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/AddSickPeople.vue'),
                     meta:{title: '添加生病人员'}
@@ -217,6 +227,11 @@ export default new Router({
                     path: 'editVaccineInfo',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/EditVaccineInfo.vue'),
                     meta: { title: '修改接种状态' }
+                },
+                {
+                    path: 'riskArea',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/RiskArea.vue'),
+                    meta: { title: '风险地区查询' }
                 }
             ]
         },
