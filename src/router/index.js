@@ -232,6 +232,11 @@ export default new Router({
                     path: 'riskArea',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/RiskArea.vue'),
                     meta: { title: '风险地区查询' }
+                },
+                {
+                    path: 'arrivalList',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/ArrivalList.vue'),
+                    meta: { title: '行程报备列表' }
                 }
             ]
         },

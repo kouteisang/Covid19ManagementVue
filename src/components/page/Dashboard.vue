@@ -84,9 +84,18 @@
                             </template>
                         </el-table-column>
                         <el-table-column width="60">
-                            <template>
-                                <i class="el-icon-edit"></i>
-                                <i class="el-icon-delete"></i>
+                            <template slot-scope="scope">
+                                <i class="el-icon-edit" @click="edit(scope.row)"></i>
+                              <el-popconfirm
+                                  confirm-button-text='好的'
+                                  cancel-button-text='不用了'
+                                  icon="el-icon-info"
+                                  icon-color="red"
+                                  title="确定删除这一待办事项吗？"
+                                  @confirm="deleteTodo(scope.row)"
+                              >
+                                <i class="el-icon-delete"  slot="reference"></i>
+                              </el-popconfirm>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -94,11 +103,6 @@
             </el-col>
         </el-row>
         <el-row :gutter="20">
-<!--            <el-col :span="12">-->
-<!--                <el-card shadow="hover">-->
-<!--                    <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>-->
-<!--                </el-card>-->
-<!--            </el-col>-->
             <el-col :span="12">
                 <el-card shadow="hover">
                     <schart ref="line" class="schart" canvasId="line" :options="options2"></schart>
@@ -133,6 +137,15 @@
       </el-dialog>
 
 
+      <!-- 编辑弹出框 -->
+      <el-dialog title="修改待办事件" :visible.sync="editVisibleEdit" width="30%">
+        <el-input v-model="toDoThing" placeholder="请输入待办事项"></el-input>
+        <span slot="footer" class="dialog-footer">
+                <el-button @click="editVisibleEdit = false">取 消</el-button>
+                <el-button type="primary" @click="SAVETHISEDIT()">确 定</el-button>
+            </span>
+      </el-dialog>
+
 
     </div>
 </template>
@@ -153,7 +166,9 @@ export default {
             curedPeople:43.1,
             deadPeople:0.2,
             toDoThing:'',
+          id:'',
             editVisible: false,
+            editVisibleEdit: false,
             nowTime: localStorage.getItem("nowTime"),
             picUrl: localStorage.getItem("picUrl"),
             name: localStorage.getItem('username'),
@@ -223,17 +238,6 @@ export default {
             return localStorage.getItem("nowRole") === '1' ? '管理员' : '普通用户';
         }
     },
-    // created() {
-    //     this.handleListener();
-    //     this.changeDate();
-    // },
-    // activated() {
-    //     this.handleListener();
-    // },
-    // deactivated() {
-    //     window.removeEventListener('resize', this.renderChart);
-    //     bus.$off('collapse', this.handleBus);
-    // },
     methods: {
         changeDate() {
             const now = new Date().getTime();
@@ -245,6 +249,45 @@ export default {
       addTodo(){
         this.todoThing = ''
         this.editVisible = true;
+      },
+      edit(row){
+        this.id = row.id;
+        this.editVisibleEdit = true;
+        this.toDoThing = row.title;
+      },
+      deleteTodo(row){
+        const that = this
+        let url = 'http://localhost:8181/todo/deleteInfo'
+        let params = {
+          id: row.id
+        }
+        axios.post(url,qs.stringify(params), {headers:{ 'content-type': 'application/x-www-form-urlencoded'}}).then(function (resp){
+          that.$message.success('删除待办任务成功');
+          that.editVisible = false;
+          let urlTodoList = 'http://localhost:8181/todo/getTodoList?identityId=' + localStorage.getItem('ms_username')
+          axios.get(urlTodoList).then(function (resp) {
+            that.todoList = resp.data.data.todoList
+            that.editVisibleEdit = false
+          })
+        })
+      },
+      SAVETHISEDIT(){
+        const that = this
+        let url = 'http://localhost:8181/todo/editInfo'
+        let params = {
+          identityId: localStorage.getItem('ms_username'),
+          title: this.toDoThing,
+          id: this.id
+        }
+        axios.post(url,qs.stringify(params),{headers:{ 'content-type': 'application/x-www-form-urlencoded' }}).then(function (resp){
+          that.$message.success('修改待办任务成功');
+          that.editVisible = false;
+          let urlTodoList = 'http://localhost:8181/todo/getTodoList?identityId=' + localStorage.getItem('ms_username')
+          axios.get(urlTodoList).then(function (resp) {
+            that.todoList = resp.data.data.todoList
+            that.editVisibleEdit = false
+          })
+        })
       },
       saveEdit(){
           const that = this
@@ -302,8 +345,6 @@ export default {
             that.options2.datasets[0].data = resp.data.data.daytempList
             that.options2.datasets[1].data = resp.data.data.nighttempList
         })
-
-
   }
 };
 </script>

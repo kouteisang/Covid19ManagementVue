@@ -190,7 +190,7 @@ export default {
         let confirmedCountYes = parseInt(resp.data.data.confirmedCountYes)
         let curedCountYes = parseInt(resp.data.data.curedCountYes)
         let deadCountYes = parseInt(resp.data.data.deadCountYes)
-        that.options1.title.text =  that.form.regions.label+"疫情数据分析图"
+        that.options1.title.text =  that.form.regions.label+"疫情数据分析柱状图"
         that.options1.datasets[0].data = [confirmedCountYes,confirmedCount]
         that.options1.datasets[1].data = [curedCountYes,curedCount]
         that.options1.datasets[2].data = [deadCountYes,deadCount]

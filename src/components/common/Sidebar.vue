@@ -284,6 +284,11 @@ export default {
                     icon: 'el-icon-lx-attention',
                     index: 'epidemicReport',
                     title: '风险地区/海外行程报备'
+                  },
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'arrivalList',
+                    title: '行程报备列表'
                   }
                 ]
               }
