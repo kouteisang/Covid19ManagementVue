@@ -35,8 +35,6 @@
         <el-table-column prop="confirm" label="总共确诊" ></el-table-column>
         <el-table-column prop="dead" label="死亡人数"></el-table-column>
         <el-table-column prop="heal" label="治疗人数" ></el-table-column>
-        <el-table-column prop="sdate" label="起始日期"></el-table-column>
-        <el-table-column prop="date" label="当前日期"></el-table-column>
         <el-table-column label="状态" align="center">
           <template slot-scope="scope">
             <el-tag
@@ -53,22 +51,31 @@
             >{{scope.row.grade}}</el-tag>
           </template>
         </el-table-column>
+        <el-table-column label="操作" width="180" align="center">
+          <template slot-scope="scope">
+            <el-button
+                type="text"
+                icon="el-icon-lx-forward"
+                @click="handleEdit(scope.$index, scope.row)"
+            >查看详情</el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
 
     <!-- 编辑弹出框 -->
-    <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-      <el-form ref="form" :model="form" label-width="70px">
-        <el-form-item label="用户名">
-          <el-input v-model="form.name"></el-input>
-        </el-form-item>
-        <el-form-item label="地址">
-          <el-input v-model="form.address"></el-input>
-        </el-form-item>
-      </el-form>
+    <el-dialog title="风险地区详细信息" :visible.sync="editVisible" width="30%">
+<!--      <el-form ref="form" :model="form" label-width="70px">-->
+<!--        <el-form-item label="用户名">-->
+<!--          <el-input v-model="form.name"></el-input>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item label="地址">-->
+<!--          <el-input v-model="form.address"></el-input>-->
+<!--        </el-form-item>-->
+<!--      </el-form>-->
+      <div v-for="(item, i) in listArea">{{item}}</div>
       <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
+                <el-button type="primary" @click="editVisible = false">确 定</el-button>
             </span>
     </el-dialog>
   </div>
@@ -97,6 +104,7 @@ export default {
       },
       suggestion:'',
       tableData: [],
+      listArea:[],
       multipleSelection: [],
       delList: [],
       editVisible: false,
@@ -151,7 +159,12 @@ export default {
     }
     ,
     handleEdit(index, row){
-      this.suggestion = row.suggestion
+      let url = 'http://localhost:8181/covidApi/getRiskSpecificInfo?city='+row.city
+      const that = this
+      axios.get(url).then(function (resp) {
+        that.listArea = resp.data.data.listArea;
+      })
+      this.editVisible = true;
     }
     ,
     // 触发搜索按钮
