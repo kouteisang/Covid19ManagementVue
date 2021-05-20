@@ -20,6 +20,11 @@ export default new Router({
                     meta:{title: '行程报备'}
                 },
                 {
+                    path:'baiduMap',
+                    component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/BaiduMap.vue'),
+                    meta:{title: '行程路线'}
+                },
+                {
                     path:'covidNewsListTencent',
                     component: () => import(/* webpackChunkName: "editCommunityUserInfo" */ '../components/page/CovidNewsListTencent.vue'),
                     meta:{title: '各省市新闻'}
@@ -236,6 +241,11 @@ export default new Router({
                 {
                     path: 'arrivalList',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/ArrivalList.vue'),
+                    meta: { title: '行程报备列表' }
+                },
+                {
+                    path: 'travelCityInfo',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/TravelCityInfo.vue'),
                     meta: { title: '行程报备列表' }
                 }
             ]

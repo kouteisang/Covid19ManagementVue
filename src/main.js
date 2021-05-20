@@ -14,6 +14,8 @@ import axios from "axios";
 import VueAxios from 'vue-axios'
 import store from "./role";
 import _glob from './role/user.js'
+import BaiduMap from 'vue-baidu-map'
+
 Vue.prototype.GLOBAL = _glob
 axios.withCredentials = true;
 axios.defaults.withCredentials=true
@@ -22,6 +24,9 @@ Vue.prototype.$echarts = echarts
 import china from 'echarts/map/json/china.json'
 echarts.registerMap('china', china)
 Vue.config.productionTip = false;
+Vue.use(BaiduMap, {
+    ak: 'ne52jEbvgvLx7kdY0O1g6LXrVhNLEGhhg'//百度地图密钥
+});
 Vue.use(VueI18n);
 Vue.use(ElementUI, {
     size: 'small'

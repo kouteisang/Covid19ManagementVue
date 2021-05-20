@@ -175,17 +175,17 @@ export default {
                   {
                     icon: 'el-icon-lx-attention',
                     index: 'allCountryCovidData',
-                    title: '全球疫情数据'
+                    title: '全球疫情数据分析'
                   },
                   {
                     icon: 'el-icon-lx-attention',
                     index: 'chinaCovidData',
-                    title: '中国疫情数据'
+                    title: '中国疫情数据分析'
                   },
                   {
                     icon: 'el-icon-lx-attention',
                     index: 'provinceCovidData',
-                    title: '各地区疫情数据'
+                    title: '各地区疫情数据分析'
                   }
                 ]
               },
@@ -218,12 +218,12 @@ export default {
                   {
                     icon: 'el-icon-lx-attention',
                     index: 'CovidNewsList',
-                    title: '疫情新闻'
+                    title: '央视疫情新闻'
                   },
                   {
                     icon: 'el-icon-lx-attention',
                     index: 'CovidNewsListTencent',
-                    title: '各省市新闻'
+                    title: '各省市疫情新闻'
                   }
                 ]
               },
@@ -247,7 +247,7 @@ export default {
                   {
                     icon: 'el-icon-lx-cascades',
                     index: 'VacinneData',
-                    title: '全球疫情接种信息'
+                    title: '全球疫苗接种信息'
                   },
                   {
                     icon: 'el-icon-lx-cascades',
@@ -289,7 +289,20 @@ export default {
                     icon: 'el-icon-lx-attention',
                     index: 'arrivalList',
                     title: '行程报备列表'
-                  }
+                  },
+                ]
+              },
+              {
+                icon: 'el-icon-lx-cascades',
+                index: '21',
+                title: '疫情境内游专区',
+                subs: [
+                  {
+                    icon: 'el-icon-lx-attention',
+                    index: 'travelCityInfo',
+                    title: '国内推荐前10境内游省份'
+                  },
+
                 ]
               }
             ],
@@ -343,17 +356,17 @@ export default {
                 {
                   icon: 'el-icon-lx-attention',
                   index: 'allCountryCovidData',
-                  title: '全球疫情数据'
+                  title: '全球疫情数据分析'
                 },
                 {
                   icon: 'el-icon-lx-attention',
                   index: 'chinaCovidData',
-                  title: '中国疫情数据'
+                  title: '中国疫情数据分析'
                 },
                 {
                   icon: 'el-icon-lx-attention',
                   index: 'provinceCovidData',
-                  title: '各地区疫情数据'
+                  title: '各地区疫情数据分析'
                 }
               ]
             },
@@ -381,12 +394,12 @@ export default {
                 {
                   icon: 'el-icon-lx-attention',
                   index: 'CovidNewsList',
-                  title: '疫情新闻'
+                  title: '央视疫情新闻'
                 },
                 {
                   icon: 'el-icon-lx-attention',
                   index: 'CovidNewsListTencent',
-                  title: '各省市新闻'
+                  title: '各省市疫情新闻'
                 }
               ]
             },
@@ -410,7 +423,7 @@ export default {
                 {
                   icon: 'el-icon-lx-cascades',
                   index: 'VacinneData',
-                  title: '全球疫情接种信息'
+                  title: '全球疫苗接种信息'
                 },
                 {
                   icon: 'el-icon-lx-cascades',
