@@ -247,6 +247,11 @@ export default new Router({
                     path: 'travelCityInfo',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/TravelCityInfo.vue'),
                     meta: { title: '行程报备列表' }
+                },
+                {
+                    path: 'verifyInfo',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/VerifyInfo.vue'),
+                    meta: { title: '身份认证' }
                 }
             ]
         },

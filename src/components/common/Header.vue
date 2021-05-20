@@ -18,10 +18,10 @@
                 <div class="btn-bell">
                     <el-tooltip
                         effect="dark"
-                        :content="message?`有${message}条未读消息`:`消息中心`"
+                        :content="实名认证"
                         placement="bottom"
                     >
-                        <router-link to="/tabs">
+                        <router-link to="/verifyInfo">
                             <i class="el-icon-bell"></i>
                         </router-link>
                     </el-tooltip>
@@ -57,7 +57,7 @@ export default {
             collapse: false,
             fullscreen: false,
             name: 'linxin',
-            message: 2
+            message: 0
         };
     },
     computed: {
