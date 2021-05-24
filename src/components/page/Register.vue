@@ -44,6 +44,12 @@
           </el-input>
         </el-form-item>
 
+        <el-form-item  prop="ages">
+          <el-select v-model="param.options.label" placeholder="请选择您所注册的角色">
+            <el-option v-for="age in param.options" :key="age.value" :value="age.value" :label="age.label"/>
+          </el-select>
+        </el-form-item>
+
         <div class="login-btn">
           <el-button type="primary" @click="submitForm()">注册</el-button>
         </div>
@@ -62,7 +68,14 @@ export default {
         identityId: '',
         username: '',
         password: '',
-        passwordAgain:''
+        passwordAgain:'',
+        options: [{
+          value: '0',
+          label: '普通用户'
+        }, {
+          value: '1',
+          label: '管理员'
+        }]
       },
       imageUrl: '',
       rules: {
@@ -93,6 +106,7 @@ export default {
       }
     },
     submitForm() {
+      const that = this;
       if(this.param.password != this.param.passwordAgain){
           this.$message.warning('两次输入密码不一致');
       }else{
@@ -108,10 +122,11 @@ export default {
             identityId: that.param.identityId,
             password: that.param.password,
             username: that.param.username,
-            picUrl: resp.data.data.picUrl
+            picUrl: resp.data.data.picUrl,
+            role: parseInt(that.param.options.label)
           }
           axios.post(urlAddVaccineLocation, qs.stringify(params), {headers: postHead}).then(function (resp){
-            that.$message.success('注册用户成功！');
+            that.$message.success(resp.data.data.res);
           })
         })
       }

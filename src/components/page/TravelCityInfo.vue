@@ -28,7 +28,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="score" label="综合得分" sortable></el-table-column>
-        <el-table-column prop="info" label="简介" sortable></el-table-column>
+        <el-table-column prop="info" label="简介"></el-table-column>
         <!--              <el-table-column prop="date" label="注册时间"></el-table-column>-->
       </el-table>
     </div>

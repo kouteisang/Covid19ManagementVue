@@ -252,6 +252,11 @@ export default new Router({
                     path: 'verifyInfo',
                     component: () => import(/* webpackChunkName: "donate" */ '../components/page/VerifyInfo.vue'),
                     meta: { title: '身份认证' }
+                },
+                {
+                    path: 'bpm',
+                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/bpm.vue'),
+                    meta: { title: '审批中心' }
                 }
             ]
         },

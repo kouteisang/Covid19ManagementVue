@@ -45,6 +45,7 @@
           <div v-if="form.nationality != ''">民族：{{form.nationality}}</div>
           <div v-if="form.startDate != ''">有效日期：{{form.startDate}}-{{form.endDate}}</div>
           <div v-if="form.issue != ''">签发机构：{{form.issue}}</div>
+          <div v-if="form.address != ''">住址：{{form.address}}</div>
 
         </el-form>
       </div>
@@ -68,7 +69,8 @@ export default {
           birth:'',
           startDate:'',
           endDate:'',
-          issue:''
+          issue:'',
+          address:''
       },
       fileUrls:[]
     };
@@ -146,25 +148,29 @@ export default {
       axios.post(url, formData, {headers: header}).then(function (resp){
         let postHead = { 'content-type': 'application/x-www-form-urlencoded' }
         that.fileUrls = resp.data.data.fileUrls;
-        alert(that.fileUrls[0])
         let paramsInfo = {
           signUrl: that.fileUrls[0],
           faceUrl:that.fileUrls[1],
-          backUrl:that.fileUrls[2]
+          backUrl:that.fileUrls[2],
+          identityId: localStorage.getItem("ms_username")
         }
         axios.post(urlData, qs.stringify(paramsInfo), {headers:postHead}).then(function (resp){
-          console.log(resp)
-            that.form.name = resp.data.data.name
-            that.form.identityId = resp.data.data.face.identityId;
-          that.form.address = resp.data.data.face.address;
-          that.form.sex = resp.data.data.face.sex;
-          that.form.nationality = resp.data.data.face.nationality;
-          that.form.issue = resp.data.data.back.issue
-          that.form.startDate = resp.data.data.back.start_date
-          that.form.endDate = resp.data.data.back.end_date
-
-
-
+            if(resp.data.data.verify == "false"){
+              that.$message.error('请勿重复身份认真！');
+            }else if(resp.data.data.verify == "namefalse"){
+              that.$message.error('您上传的手写名有误！');
+            }else {
+              that.form.name = resp.data.data.name
+              that.form.identityId = resp.data.data.face.identityId;
+              that.form.address = resp.data.data.face.address;
+              that.form.sex = resp.data.data.face.sex;
+              that.form.birth = resp.data.data.face.birth;
+              that.form.nationality = resp.data.data.face.nationality;
+              that.form.issue = resp.data.data.back.issue
+              that.form.startDate = resp.data.data.back.start_date
+              that.form.endDate = resp.data.data.back.end_date
+              that.$message.success('实名认证成功！');
+            }
         })
       })
     }

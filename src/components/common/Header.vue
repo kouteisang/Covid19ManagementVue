@@ -15,10 +15,11 @@
                     </el-tooltip>
                 </div>
                 <!-- 消息中心 -->
-                <div class="btn-bell">
+                <div class="btn-bell" v-if="message > 0">
                     <el-tooltip
+                        v-if="message > 0"
                         effect="dark"
-                        :content="实名认证"
+                        :content="say"
                         placement="bottom"
                     >
                         <router-link to="/verifyInfo">
@@ -27,6 +28,20 @@
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
+
+              <div class="btn-bell" >
+                <el-tooltip
+                    effect="dark"
+                    :content="sayAus"
+                    placement="bottom"
+                >
+                  <router-link to="/bpm">
+                    <i class="el-icon-bell"></i>
+                  </router-link>
+                </el-tooltip>
+                <span class="btn-bell-badge" v-if="messageAus"></span>
+              </div>
+
                 <!-- 用户头像 -->
                 <div class="user-avator">
                     <img :src=picUrl />
@@ -38,9 +53,6 @@
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
-                        <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
-                            <el-dropdown-item>项目仓库</el-dropdown-item>
-                        </a>
                         <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -50,6 +62,7 @@
 </template>
 <script>
 import bus from '../common/bus';
+import axios from "axios";
 export default {
     data() {
         return {
@@ -57,7 +70,11 @@ export default {
             collapse: false,
             fullscreen: false,
             name: 'linxin',
-            message: 0
+            message: 1,
+            say:'',
+            sayAus:'',
+            messageAus:0
+
         };
     },
     computed: {
@@ -111,7 +128,26 @@ export default {
         if (document.body.clientWidth < 1500) {
             this.collapseChage();
         }
-    }
+    },created() {
+      const that = this;
+     let addUserUrl = 'http://localhost:8181/verify/getUserInfo?identityId='+localStorage.getItem('ms_username')
+    axios.get(addUserUrl).then(function (resp) {
+      if(resp.data.data.VerifyUser === 1){
+        that.message = 0;
+      }else{
+        that.message = 1;
+        that.say = "您还未进行实名认证，请尽快认证！"
+      }
+    })
+
+    let allAus = 'http://localhost:8181/manager/getAus';
+    axios.get(allAus).then(function (resp) {
+      that.messageAus = parseInt(resp.data.data.aus)
+      that.sayAus = '您有'+that.messageAus+'条审批，请查看'
+    })
+
+
+  }
 };
 </script>
 <style scoped>

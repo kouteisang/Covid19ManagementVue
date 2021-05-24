@@ -159,12 +159,12 @@ export default {
     data() {
         return {
           address:localStorage.getItem("address"),
-            confirmedCount: 158823878,
-          curedCount: 120929393,
-          deadCount: 3329787,
-            confirmedPeople: 56.7,
-            curedPeople:43.1,
-            deadPeople:0.2,
+            confirmedCount: 165238610,
+          curedCount: 128332030,
+          deadCount: 3451631,
+            confirmedPeople: 55.6,
+            curedPeople:43.2,
+            deadPeople:1.2,
             toDoThing:'',
           id:'',
             editVisible: false,

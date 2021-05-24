@@ -3,7 +3,7 @@
     <div class="crumbs">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <i class="el-icon-lx-cascades"></i>  缺失物资列表
+          <i class="el-icon-lx-cascades"></i>  行程报备列表
         </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -31,7 +31,7 @@
         <el-table-column prop="emergencyName" label="紧急联系人姓名" ></el-table-column>
         <el-table-column prop="emergencyPhone" label="紧急联系人电话" ></el-table-column>
         <el-table-column prop="community" label="家庭住址" ></el-table-column>
-        <el-table-column label="操作" width="105" align="center">
+        <el-table-column label="隔离时间" width="105" align="center">
           <template slot-scope="scope">
             <el-tag
                 v-if="scope.row.state === '居家隔离未满14天'"
