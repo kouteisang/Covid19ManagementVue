@@ -29,7 +29,7 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
 
-              <div class="btn-bell" >
+              <div class="btn-bell"  v-if="nowRole == 1">
                 <el-tooltip
                     effect="dark"
                     :content="sayAus"
@@ -66,6 +66,7 @@ import axios from "axios";
 export default {
     data() {
         return {
+            nowRole: parseInt(localStorage.getItem("nowRole")),
             picUrl: localStorage.getItem("picUrl"),
             collapse: false,
             fullscreen: false,
