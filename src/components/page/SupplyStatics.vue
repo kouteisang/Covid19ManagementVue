@@ -14,6 +14,7 @@
       <div class="schart-box">
         <schart class="schart" canvasId="pie" :options="options3"></schart>
       </div>
+      <el-link>推荐采购的物品数量前三名为：</el-link> <el-link type="danger" >{{recommendation}}</el-link>
     </div>
   </div>
 </template>
@@ -28,6 +29,7 @@ export default {
   },
   data() {
     return {
+      recommendation:'',
       options2: {
         type: 'line',
         title: {
@@ -109,6 +111,11 @@ export default {
       that.options2.datasets[3].data = resp.data.data.生活物资
       that.options2.datasets[4].label = "调料"
       that.options2.datasets[4].data = resp.data.data.调料
+    })
+
+    let urlRecommendation = 'http://localhost:8181/user/supply/recommendBuySupply'
+    axios.get(urlRecommendation).then(function (resp){
+      that.recommendation = resp.data.data.sb
     })
   }
 };
