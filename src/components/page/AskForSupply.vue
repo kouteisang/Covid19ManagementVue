@@ -54,6 +54,7 @@ export default {
   name: 'AskForSupply',
   data() {
     return {
+      operatorId: localStorage.getItem("ms_username"),
       form: {
         identityId: '',
         supplyTypes: [],
@@ -106,12 +107,22 @@ export default {
         supplyContent:this.form.supplyContents.label,
         age: parseInt(this.form.ages.label),
         isEmergency: this.form.isEmergency,
-        suggestion: this.form.suggestion
+        suggestion: this.form.suggestion,
       }
       let header = { 'content-type': 'application/x-www-form-urlencoded' }
       axios.post(url, qs.stringify(params), {headers: header}).then(function (resp) {
         console.log(resp)
-        if(resp.data.code == "200"){
+        if(resp.data.code == "600"){
+          that.$message({
+            message: '您无权限操作，请先进行实名认证！',
+            type:'warning'
+          })
+        } else if(resp.data.code == "500"){
+          that.$message({
+            message: '您输入的格式有误，请仔细检查后重新输入！',
+            type:'warning'
+          })
+        } else if(resp.data.code == "200"){
           that.$message({
             message: '物资需求报备成功',
             type: 'success'

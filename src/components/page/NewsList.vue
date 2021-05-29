@@ -18,9 +18,9 @@
               </template>
             </el-table-column>
             <el-table-column prop="createTime" width="180"></el-table-column>
-            <el-table-column width="120">
+            <el-table-column width="200">
               <template slot-scope="scope">
-                <el-button  v-if="nowRole == 0" size="small" @click="handleRead(scope.$index, scope.row)">查看详情</el-button>
+                <el-button  size="small" @click="handleRead(scope.$index, scope.row)">查看详情</el-button>
                 <el-button  v-if="nowRole == 1" size="small" @click="handleEdit(scope.$index, scope.row)">修改公告</el-button>
               </template>
             </el-table-column>

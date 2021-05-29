@@ -34,6 +34,7 @@ export default {
   name: "AddNews",
   data(){
     return{
+      operatorId: localStorage.getItem("ms_username"),
       form:{
         newsTitle:'',
         newsContent:''
@@ -54,10 +55,17 @@ export default {
       const that = this
       let params = {
         newsTitle: this.form.newsTitle,
-        newsContent: this.form.newsContent
+        newsContent: this.form.newsContent,
+        operator: this.operatorId
       }
       axios.post(url, qs.stringify(params), {headers:header}).then(function (resp){
-        if(resp.data.code == "200") {
+        if(resp.data.code == "600"){
+          that.$message({
+            message: '您无权限操作，请先进行实名认证！',
+            type:'warning'
+          })
+        }
+        else if(resp.data.code == "200") {
           that.$message({
             message: '发布公告成功',
             type: 'success'

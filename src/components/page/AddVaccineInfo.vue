@@ -52,6 +52,7 @@ export default {
   name: 'AddVaccineInfo',
   data() {
     return {
+      operatorId: localStorage.getItem("ms_username"),
       form: {
         hospitalName: '',
         hospitalAddress: '',
@@ -106,10 +107,18 @@ export default {
               hospitalLocation: that.form.hospitalLocation,
               hospitalTel: that.form.hospitalTel,
               type: that.form.type.join(","),
-              picUrl: resp.data.data.picUrl
+              picUrl: resp.data.data.picUrl,
+              operator: that.operatorId
             }
             axios.post(urlAddVaccineLocation, qs.stringify(params), {headers: postHead}).then(function (resp){
-              that.$message.success('保存接种点信息成功！');
+              if(resp.data.code == "600"){
+                that.$message({
+                  message: '您无权限操作，请先进行实名认证！',
+                  type:'warning'
+                })
+              }else {
+                that.$message.success('保存接种点信息成功！');
+              }
             })
           })
         }
