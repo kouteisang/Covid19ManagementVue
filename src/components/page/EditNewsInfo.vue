@@ -34,6 +34,7 @@ export default {
   name: "EditNewsInfo",
   data(){
     return{
+      identityId: localStorage.getItem("ms_username"),
       nowRole: localStorage.getItem("nowRole"),
       form:{
         newsTitle:'',
@@ -66,11 +67,17 @@ export default {
       let params = {
         id: this.$route.query.id,
         newsTitle: this.form.newsTitle,
-        newsContent: this.form.newsContent
+        newsContent: this.form.newsContent,
+        operator: this.identityId
       }
 
       axios.post(url, qs.stringify(params), {headers:header}).then(function (resp){
-        if(resp.data.code == "200") {
+        if(resp.data.code == "600"){
+          that.$message({
+            message: '您无权限操作，请先进行实名认证！',
+            type:'warning'
+          })
+        } else if(resp.data.code == "200") {
           that.$message({
             message: '修改公告成功',
             type: 'success'

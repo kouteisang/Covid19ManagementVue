@@ -453,6 +453,19 @@ export default {
                   title: '风险地区/海外行程报备'
                 }
               ]
+            },
+            {
+              icon: 'el-icon-lx-cascades',
+              index: '21',
+              title: '疫情境内游专区',
+              subs: [
+                {
+                  icon: 'el-icon-lx-attention',
+                  index: 'travelCityInfo',
+                  title: '国内推荐前10境内游省份'
+                },
+
+              ]
             }
           ],
         };
